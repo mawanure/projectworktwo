@@ -658,6 +658,17 @@ footer .copyright{
 #page-header3 p{
     color: #fff;
 }
+#about-head{
+    display: flex;
+    align-items: center;
+}
+#about-head img{
+    width: 50%;
+    height: auto;
+}
+#about-head div{
+    padding-left: 40px;
+}
 
 /* contact page */
 
@@ -667,6 +678,7 @@ footer .copyright{
 
 /* responsive section */
 @media (max-width: 799px){
+
    #navbar {
     display: flex;
     flex-direction: column;
