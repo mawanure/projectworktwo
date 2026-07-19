@@ -45,7 +45,7 @@ const AdminLayout = () => {
       <aside className="hidden lg:flex flex-col w-64 bg-dark text-white shrink-0">
         <div className="h-20 flex items-center justify-between px-6 border-b border-neutral-800">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold font-spartan text-primary">Stay Home</span>
+            <span className="text-xl font-bold font-spartan text-primary">CozyCart</span>
             <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded font-bold uppercase tracking-wider">
               Admin
             </span>
@@ -95,7 +95,7 @@ const AdminLayout = () => {
         <div className="fixed inset-0 z-50 flex lg:hidden bg-neutral-900/60 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="relative flex flex-col w-64 max-w-xs bg-dark text-white h-full animate-in slide-in-from-left duration-300">
             <div className="h-20 flex items-center justify-between px-6 border-b border-neutral-800">
-              <span className="text-xl font-bold font-spartan text-primary">Stay Home</span>
+              <span className="text-xl font-bold font-spartan text-primary">CozyCart</span>
               <button onClick={() => setSidebarOpen(false)} className="p-1.5 text-neutral-400 hover:text-white">
                 <X className="h-6 w-6" />
               </button>

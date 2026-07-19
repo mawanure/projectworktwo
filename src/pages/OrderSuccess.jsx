@@ -17,7 +17,7 @@ const OrderSuccess = () => {
           Order Placed!
         </h1>
         <p className="text-sm text-gray-500 mt-2">
-          Thank you for shopping with Stay Home. Your order has been successfully placed.
+          Thank you for shopping with CozyCart. Your order has been successfully placed.
         </p>
 
         {orderId && (

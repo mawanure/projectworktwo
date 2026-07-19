@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
 const Settings = () => {
-  const [storeName, setStoreName] = useState('Stay Home');
+  const [storeName, setStoreName] = useState('CozyCart');
   const [currency, setCurrency] = useState('USD');
   const [deliveryFee, setDeliveryFee] = useState('60.00');
   const [freeThreshold, setFreeThreshold] = useState('1000.00');

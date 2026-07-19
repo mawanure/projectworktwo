@@ -9,19 +9,19 @@ const About = () => {
         className="relative bg-[url('/images/banner/b1.jpg')] bg-cover bg-center h-[25vh] w-full flex flex-col justify-center items-center text-center px-4 select-none mb-16"
       >
         <h2 className="text-white text-4xl font-extrabold font-spartan tracking-wide">#KnowUs</h2>
-        <p className="text-gray-200 text-sm mt-1">Discover the story behind Stay Home</p>
+        <p className="text-gray-200 text-sm mt-1">Discover the story behind CozyCart</p>
       </section>
 
       {/* Main content grid */}
       <section className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
         <div className="rounded-2xl overflow-hidden shadow-md">
-          <img src="/images/banner/a6.jpg" alt="About Stay Home" className="w-full h-auto object-cover" />
+          <img src="/images/banner/a6.jpg" alt="About CozyCart" className="w-full h-auto object-cover" />
         </div>
         <div className="space-y-6">
           <span className="text-xs text-primary font-bold uppercase tracking-wider block">Who We Are</span>
-          <h2 className="text-3xl font-bold font-spartan text-dark">We Are Stay Home Fashion</h2>
+          <h2 className="text-3xl font-bold font-spartan text-dark">We Are CozyCart Fashion</h2>
           <p className="text-sm text-gray-500 leading-relaxed font-sans">
-            Stay Home is a premium fashion brand dedicated to bringing high-quality clothing and accessories to your doorstep. We believe that great style shouldn't require leaving the comfort of your home.
+            CozyCart is a premium fashion brand dedicated to bringing high-quality clothing and accessories to your doorstep. We believe that great style shouldn't require leaving the comfort of your home.
           </p>
           <p className="text-sm text-gray-500 leading-relaxed font-sans">
             Our curated collections blend timeless classics with modern trends, ensuring you always have something perfect to wear for every occasion — from casual weekends to formal events.

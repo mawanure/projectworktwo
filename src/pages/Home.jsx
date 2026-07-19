@@ -160,7 +160,7 @@ const Home = () => {
           <h4 className="text-sm font-bold tracking-widest uppercase text-gray-300">Crazy Deals</h4>
           <h2 className="text-2xl md:text-3xl font-extrabold font-spartan mt-1">Buy 1 Get 1 Free</h2>
           <p className="text-sm text-gray-200 mt-2 max-w-xs">
-            The best classic dress is on sale at Stay Home.
+            The best classic dress is on sale at CozyCart.
           </p>
           <button
             onClick={() => navigate('/shop')}
