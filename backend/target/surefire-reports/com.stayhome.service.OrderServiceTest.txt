@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.stayhome.service.OrderServiceTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.779 s <<< FAILURE! -- in com.stayhome.service.OrderServiceTest
-com.stayhome.service.OrderServiceTest.addsDeliveryChargeBelowFreeDeliveryThreshold -- Time elapsed: 0.754 s <<< FAILURE!
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.981 s <<< FAILURE! -- in com.stayhome.service.OrderServiceTest
+com.stayhome.service.OrderServiceTest.addsDeliveryChargeBelowFreeDeliveryThreshold -- Time elapsed: 0.951 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <60.00> but was: <60.0>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

@@ -38,9 +38,9 @@ class OrderServiceTest {
 
         var preview = orderService.getCheckoutPreview(user);
 
-        assertEquals(new BigDecimal("600.00"), preview.getSubtotal());
-        assertEquals(new BigDecimal("60.00"), preview.getDeliveryCharge());
-        assertEquals(new BigDecimal("660.00"), preview.getTotalAmount());
+        assertEquals(0, new BigDecimal("600.00").compareTo(preview.getSubtotal()));
+        assertEquals(0, new BigDecimal("60.00").compareTo(preview.getDeliveryCharge()));
+        assertEquals(0, new BigDecimal("660.00").compareTo(preview.getTotalAmount()));
     }
 
     @Test
@@ -51,8 +51,8 @@ class OrderServiceTest {
 
         var preview = orderService.getCheckoutPreview(user);
 
-        assertEquals(BigDecimal.ZERO, preview.getDeliveryCharge());
-        assertEquals(new BigDecimal("1000.00"), preview.getTotalAmount());
+        assertEquals(0, BigDecimal.ZERO.compareTo(preview.getDeliveryCharge()));
+        assertEquals(0, new BigDecimal("1000.00").compareTo(preview.getTotalAmount()));
     }
 
     @Test

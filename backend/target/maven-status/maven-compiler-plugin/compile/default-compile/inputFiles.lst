@@ -45,6 +45,7 @@ D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\Wishlist
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\controller\CategoryController.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\service\AdminService.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\security\DelegatedAuthenticationEntryPoint.java
+D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\ChangePasswordRequest.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\repository\WishlistItemRepository.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\controller\OrderController.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\RegisterRequest.java
