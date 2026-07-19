@@ -262,6 +262,20 @@ public class OrderService {
 
     // ========= Mapping Helpers =========
 
+    private UserResponse mapToUserResponse(User user) {
+        if (user == null) return null;
+        return UserResponse.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .address(user.getAddress())
+                .role(user.getRole())
+                .blocked(user.getBlocked())
+                .createdAt(user.getCreatedAt())
+                .build();
+    }
+
     private OrderResponse mapToOrderResponse(Order order) {
         List<OrderItemResponse> items = order.getOrderItems().stream()
                 .map(this::mapToOrderItemResponse)
@@ -279,6 +293,7 @@ public class OrderService {
                 .paymentStatus(order.getPaymentStatus().name())
                 .orderDate(order.getOrderDate())
                 .updatedAt(order.getUpdatedAt())
+                .user(mapToUserResponse(order.getUser()))
                 .items(items)
                 .build();
     }

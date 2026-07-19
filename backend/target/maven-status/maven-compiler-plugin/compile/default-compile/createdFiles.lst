@@ -36,6 +36,7 @@ com\stayhome\entity\WishlistItem.class
 com\stayhome\security\JwtAuthFilter.class
 com\stayhome\entity\Category.class
 com\stayhome\dto\WishlistItemRequest.class
+com\stayhome\dto\ChangePasswordRequest.class
 com\stayhome\dto\DashboardStatsResponse.class
 com\stayhome\dto\CheckoutPreviewResponse.class
 com\stayhome\dto\CheckoutPreviewResponse$CheckoutPreviewResponseBuilder.class

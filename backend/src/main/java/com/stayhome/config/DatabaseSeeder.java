@@ -36,17 +36,17 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         // Seed default Admin user
-        if (!userRepository.existsByEmail("admin@stayhome.com")) {
+        if (!userRepository.existsByEmail("admin@gmail.com")) {
             User admin = User.builder()
                     .name("System Admin")
-                    .email("admin@stayhome.com")
-                    .password(passwordEncoder.encode("admin123456"))
+                    .email("admin@gmail.com")
+                    .password(passwordEncoder.encode("admin123"))
                     .role(Role.ADMIN)
                     .phone("01900000000")
                     .address("Dhaka, Bangladesh")
                     .build();
             userRepository.save(admin);
-            System.out.println("Seeded Default Admin: admin@stayhome.com / admin123456");
+            System.out.println("Seeded Default Admin: admin@gmail.com / admin123");
         }
 
         // Seed default Customer user

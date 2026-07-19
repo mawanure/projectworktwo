@@ -20,7 +20,9 @@ import java.util.List;
 @Table(name = "products", indexes = {
         @Index(name = "idx_products_category_active", columnList = "category_id,is_active"),
         @Index(name = "idx_products_featured_active", columnList = "is_featured,is_active"),
-        @Index(name = "idx_products_new_arrival_active", columnList = "is_new_arrival,is_active")
+        @Index(name = "idx_products_new_arrival_active", columnList = "is_new_arrival,is_active"),
+        @Index(name = "idx_products_name", columnList = "name"),
+        @Index(name = "idx_products_created_at", columnList = "created_at")
 })
 @Data
 @NoArgsConstructor

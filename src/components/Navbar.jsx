@@ -11,8 +11,7 @@ import {
   X, 
   LogOut, 
   LayoutDashboard, 
-  History, 
-  UserProfile 
+  History 
 } from 'lucide-react';
 
 const Navbar = () => {

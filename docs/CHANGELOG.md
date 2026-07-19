@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v1.1.0] - 2026-07-19
+### Phase 11 — Testing & Integration Completion (Stable Release)
+#### Added
+* Established full Single Page Application routing in `src/App.jsx` using `react-router-dom`.
+* Added 9 administrative React page components under `src/pages/admin/` to provide full CRUD capabilities for Products, Categories, Orders, Payments, Users, Messages, and Newsletters.
+* Added `AuthServiceTest` and `CartServiceTest` covering registration/login, cart management, and inventory stock validations.
+* Added controller integration tests `AuthIntegrationTest` and `OrderPaymentIntegrationTest` using Mockito security context mocking.
+* Configured `maven-surefire-plugin` in `pom.xml` with `net.bytebuddy.experimental=true` argLine for Java 25 compatibility.
+#### Modified
+* Fixed scale-sensitive assertions in `OrderServiceTest` using `BigDecimal.compareTo`.
+* Updated `DatabaseSeeder.java` to seed the requested administrator user (`admin@gmail.com` / `admin123`).
+* Added performance optimization indexes on `Product.java` table for `name` and `created_at` fields.
+
 ## [v1.0.0] - 2026-07-19
 ### Phase 10 — Frontend Upgrade & Integration (Major Release)
 #### Added

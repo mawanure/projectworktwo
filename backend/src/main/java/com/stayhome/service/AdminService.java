@@ -268,6 +268,7 @@ public class AdminService {
                 .paymentStatus(order.getPaymentStatus().name())
                 .orderDate(order.getOrderDate())
                 .updatedAt(order.getUpdatedAt())
+                .user(mapToUserResponse(order.getUser()))
                 .items(items)
                 .build();
     }

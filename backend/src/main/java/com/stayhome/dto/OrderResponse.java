@@ -25,5 +25,6 @@ public class OrderResponse {
     private String paymentStatus;
     private LocalDateTime orderDate;
     private LocalDateTime updatedAt;
+    private UserResponse user;
     private List<OrderItemResponse> items;
 }
