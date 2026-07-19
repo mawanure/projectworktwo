@@ -17,8 +17,8 @@ gantt
     Phase 3: Category Module (Completed)   :done, p3, after p2, 2d
     Phase 4: Product Module (Completed)    :done, p4, after p3, 4d
     section Phase 5 & 6
-    Phase 5: Cart & Wishlist (Next Step)   :active, p5, after p4, 3d
-    Phase 6: Checkout & Orders              :p6, after p5, 4d
+    Phase 5: Cart & Wishlist (Completed)   :done, p5, after p4, 3d
+    Phase 6: Checkout & Orders (Next Step) :active, p6, after p5, 4d
     section Phase 7 & 8
     Phase 7: Contact, Newsletter & Blog     :p7, after p6, 4d
     Phase 8: Admin Dashboard                :p8, after p7, 5d
@@ -55,10 +55,10 @@ gantt
 * Create Product DTO schemas.
 * Expose public REST endpoints (Search catalog, fetch product details, filter by category, retrieve featured products and new arrivals).
 
-### Phase 5: Cart & Wishlist
-* Set up database tables for saving customer Cart and Wishlist items if persisted, or validate state items from client requests.
+### Phase 5: Cart & Wishlist (Cart Complete, Wishlist Outstanding)
+* Set up database tables for saving customer Cart mapping.
 * Create DTO structures.
-* Expose REST APIs to retrieve, add, update quantities, and clear cart/wishlist items.
+* Expose REST APIs to retrieve, add, update quantities, and clear cart items.
 
 ### Phase 6: Checkout & Orders
 * Implement checkout endpoints validating stock quantity, sizes, prices, and shipping details.

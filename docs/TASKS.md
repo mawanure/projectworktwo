@@ -52,15 +52,17 @@ This document tracks implementation items across the project lifecycle.
 - `[x]` API Testing
 - `[x]` Documentation Update
 
-### Phase 5: Cart & Wishlist
-- `[ ]` Implement database tables or custom entities for Cart and Wishlist mapping
-- `[ ]` Create Cart & Wishlist DTOs (`CartItemRequest`, `CartResponse`, `WishlistResponse`)
-- `[ ]` Implement Cart / Wishlist service operations (Add, remove, update quantities, calculate subtotals)
-- `[ ]` Expose customer cart REST endpoints (`GET /api/cart`, `POST /api/cart`, `PUT /api/cart/{id}`, `DELETE /api/cart/{id}`)
+### Phase 5: Cart & Wishlist (Cart Complete, Wishlist Outstanding)
+- `[x]` Implement database tables or custom entities for Cart mapping
+- `[x]` Create Cart DTOs (`CartItemRequest`, `CartResponse`)
+- `[x]` Implement Cart service operations (Add, remove, update quantities, calculate subtotals)
+- `[x]` Expose customer cart REST endpoints (`GET /api/cart`, `POST /api/cart`, `PUT /api/cart/{id}`, `DELETE /api/cart/{id}`)
+- `[ ]` Implement database tables or custom entities for Wishlist mapping
+- `[ ]` Create Wishlist DTOs (`WishlistResponse`)
 - `[ ]` Expose customer wishlist REST endpoints (`GET /api/wishlist`, `POST /api/wishlist`, `DELETE /api/wishlist/{id}`)
-- `[ ]` Build Verification
-- `[ ]` API Testing
-- `[ ]` Documentation Update
+- `[x]` Build Verification
+- `[x]` API Testing
+- `[x]` Documentation Update
 
 ### Phase 6: Checkout & Orders
 - `[ ]` Create Order DTOs (`CheckoutRequest`, `OrderResponse`, `OrderDetailResponse`)

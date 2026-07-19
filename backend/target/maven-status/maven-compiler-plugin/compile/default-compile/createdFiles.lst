@@ -1,4 +1,7 @@
 com\stayhome\entity\ProductImage.class
+com\stayhome\repository\CartItemRepository.class
+com\stayhome\dto\CartItemResponse.class
+com\stayhome\entity\CartItem.class
 com\stayhome\repository\BlogPostRepository.class
 com\stayhome\controller\AuthController.class
 com\stayhome\entity\Product$ProductBuilder.class
@@ -7,6 +10,7 @@ com\stayhome\repository\CategoryRepository.class
 com\stayhome\exception\ResourceConflictException.class
 com\stayhome\dto\LoginRequest$LoginRequestBuilder.class
 com\stayhome\repository\NewsletterSubscriberRepository.class
+com\stayhome\dto\CartItemResponse$CartItemResponseBuilder.class
 com\stayhome\dto\CategoryResponse$CategoryResponseBuilder.class
 com\stayhome\repository\OrderRepository.class
 com\stayhome\dto\LoginRequest.class
@@ -18,6 +22,7 @@ com\stayhome\entity\ProductImage$ProductImageBuilder.class
 com\stayhome\dto\ProductRequest$ProductRequestBuilder.class
 com\stayhome\entity\BlogPost$BlogPostBuilder.class
 com\stayhome\exception\EmailAlreadyExistsException.class
+com\stayhome\dto\CartItemRequest$CartItemRequestBuilder.class
 com\stayhome\dto\ProductRequest.class
 com\stayhome\dto\CategoryResponse.class
 com\stayhome\entity\Product.class
@@ -25,6 +30,7 @@ com\stayhome\entity\Order.class
 com\stayhome\security\CustomUserDetailsService.class
 com\stayhome\controller\CategoryController.class
 com\stayhome\service\AuthService.class
+com\stayhome\dto\CartResponse$CartResponseBuilder.class
 com\stayhome\entity\Order$OrderBuilder.class
 com\stayhome\dto\RegisterRequest.class
 com\stayhome\security\JwtAuthFilter.class
@@ -35,6 +41,7 @@ com\stayhome\entity\Role.class
 com\stayhome\repository\UserRepository.class
 com\stayhome\repository\OrderItemRepository.class
 com\stayhome\entity\OrderStatus.class
+com\stayhome\entity\CartItem$CartItemBuilder.class
 com\stayhome\exception\ErrorDetails$ErrorDetailsBuilder.class
 com\stayhome\security\JwtUtils.class
 com\stayhome\exception\GlobalExceptionHandler.class
@@ -48,11 +55,14 @@ com\stayhome\repository\ContactMessageRepository.class
 com\stayhome\dto\ProductSummaryResponse$ProductSummaryResponseBuilder.class
 com\stayhome\dto\CategoryRequest$CategoryRequestBuilder.class
 com\stayhome\service\CategoryService.class
+com\stayhome\service\CartService.class
 com\stayhome\entity\Category$CategoryBuilder.class
 com\stayhome\service\ProductService.class
 com\stayhome\entity\OrderItem$OrderItemBuilder.class
+com\stayhome\controller\CartController.class
 com\stayhome\dto\ProductResponse$ProductResponseBuilder.class
 com\stayhome\dto\RegisterRequest$RegisterRequestBuilder.class
+com\stayhome\dto\CartItemRequest.class
 com\stayhome\config\DatabaseSeeder.class
 com\stayhome\repository\ProductImageRepository.class
 com\stayhome\entity\User.class
@@ -63,5 +73,6 @@ com\stayhome\dto\CategoryRequest.class
 com\stayhome\entity\BlogPost.class
 com\stayhome\entity\NewsletterSubscriber$NewsletterSubscriberBuilder.class
 com\stayhome\repository\ProductRepository.class
+com\stayhome\dto\CartResponse.class
 com\stayhome\dto\UserResponse.class
 com\stayhome\entity\NewsletterSubscriber.class

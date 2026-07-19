@@ -28,10 +28,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [v0.5.0] - Future Scope
+## [v0.5.0] - 2026-07-19
 ### Added
-* Cart & Wishlist module implementation.
-* Persistence mapping tables for cart items.
+* Shopping Cart Module implementation:
+  * Database table `cart_items` mapped via JPA to persist customer selections.
+  * Cart DTO schemas (`CartItemRequest`, `CartItemResponse`, `CartResponse`).
+  * Endpoints to manage the cart:
+    * `GET /api/cart` (retrieves full cart status and aggregates subtotal prices).
+    * `POST /api/cart` (adds or increments cart items, validating stock availability).
+    * `PUT /api/cart/{id}` (updates item quantities, checking stock limits).
+    * `DELETE /api/cart/{id}` (removes item from cart).
+  * Auto database validation of stock limits preventing over-adding cart quantities.
+
+---
+
+## [v0.6.0] - Future Scope
+### Added
+* Wishlist module implementation.
+* Checkout & Order processing module integration.
 
 ---
 

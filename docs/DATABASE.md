@@ -118,6 +118,16 @@ Maintains emails registered through the newsletter.
 * **email** (`VARCHAR(100)`, UNIQUE, NOT NULL)
 * **subscribed_at** (`TIMESTAMP`, NOT NULL)
 
+### 10. `cart_items` Table
+Stores customer selections in their shopping cart.
+* **id** (`BIGINT`, PK, Auto-Increment)
+* **user_id** (`BIGINT`, FK referencing `users(id)`)
+* **product_id** (`BIGINT`, FK referencing `products(id)`)
+* **size** (`VARCHAR(20)`, NOT NULL)
+* **quantity** (`INT`, NOT NULL)
+* **created_at** (`TIMESTAMP`, NOT NULL)
+* **updated_at** (`TIMESTAMP`)
+
 ---
 
 ## ⚡ Performance Optimization Indexes
@@ -127,3 +137,4 @@ To maintain database response times, the following database column indexes must 
 2. **Category lookup index (`products.category_id`):** Speeds up query performance when filtering products on the Shop catalog page.
 3. **Product search index (`products.name`):** Improves search query execution times when users use search parameters.
 4. **Creation sorting index (`products.created_at`):** Speeds up fetching "New Arrivals" and sorting the latest catalog additions.
+5. **Cart user index (`cart_items.user_id`):** Speeds up retrieving a customer's cart items.
