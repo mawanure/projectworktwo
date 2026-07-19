@@ -40,7 +40,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 glass-nav h-20 w-full flex items-center justify-between px-6 md:px-16 transition-all duration-300">
       {/* Logo */}
       <Link to="/" className="flex items-center">
-        <img src="/images/logo.png" alt="Stay Home logo" className="h-8 md:h-10 object-contain" />
+        <img src="/images/logo.png" alt="CozyCart logo" className="h-10 md:h-12 object-contain" />
       </Link>
 
       {/* Desktop Navigation Links */}

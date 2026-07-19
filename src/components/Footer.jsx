@@ -64,7 +64,7 @@ const Footer = () => {
       <div className="section-p1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 py-16 px-6 md:px-16">
         {/* Contact Column */}
         <div className="flex flex-col space-y-4">
-          <img className="h-8 md:h-10 w-fit object-contain mb-2" src="/images/logo.png" alt="Stay Home logo" />
+          <img className="h-10 md:h-12 w-fit object-contain mb-2" src="/images/logo.png" alt="CozyCart logo" />
           <h4 className="text-base font-bold text-dark uppercase tracking-wider">Contact Us</h4>
           <div className="space-y-2 text-sm text-gray-500">
             <p className="flex items-center space-x-2">
