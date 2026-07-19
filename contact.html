@@ -3,55 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get in touch with Stay Home. We'd love to hear from you.">
+    <title>Contact Us | Stay Home</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ddfa3fd6c7.js" crossorigin="anonymous"></script>
-    <title>Stay Home</title>
 </head>
 <body>
 
-    
     <section id="header">
-        <a href="#"><img src="images/logo.png" alt="logo picture" class="logo"></a>
-
-        <div>
-            <ul id="navbar">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a class="active" href="contact.html">Contact</a></li>
-                <li><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li> 
-            </ul>
+        <a href="index.html"><img src="images/logo.png" alt="Stay Home" class="logo"></a>
+        <div><ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a class="active" href="contact.html">Contact</a></li>
+        </ul></div>
+        <div class="header-actions" id="header-actions">
+            <a href="cart.html" class="header-icon-btn header-cart-btn"><i class="fa-solid fa-bag-shopping"></i><span class="cart-badge" style="display:none">0</span></a>
+            <button class="header-icon-btn" onclick="openLoginModal()"><i class="fas fa-user"></i></button>
         </div>
         <div id="mobile">
-           
-            <a href="cart.html" style="color: #1a1a1a;" ><i class="fa-solid fa-bag-shopping"></i></a>
-             <i id="bar" class="fa-solid fa-bars"></i>
+            <a href="cart.html" style="color:#1a1a1a;display:flex;align-items:center;justify-content:center;width:40px;height:40px"><i class="fa-solid fa-bag-shopping"></i><span class="cart-badge" style="display:none">0</span></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
         </div>
     </section>
 
-
-    <section id="page-header3" class="about-header">
-        <h2> #let's_talk </h2>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-
+    <section id="page-header3">
+        <h2>#Let's Talk</h2>
+        <p>We're here to help and answer any question you might have.</p>
+        <div class="breadcrumb">
+            <a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Contact</span>
+        </div>
     </section>
-
-
 
     <section id="contact-details" class="section-p1">
         <div class="details">
             <span>GET IN TOUCH</span>
-            <h2>Visit our agency location or contact us today</h2>
+            <h2>Visit our location or contact us today</h2>
             <h3>Head Office</h3>
-            <div>
+            <ul>
                 <li>
                     <i class="fa-solid fa-location-dot"></i>
                     <p>Chatogram, Bangladesh</p>
                 </li>
                 <li>
                     <i class="fa-regular fa-envelope"></i>
-                    <p>contact@example.com</p>
+                    <p>contact@stayhome.com</p>
                 </li>
                 <li>
                     <i class="fa-solid fa-phone"></i>
@@ -59,99 +58,57 @@
                 </li>
                 <li>
                     <i class="fa-regular fa-clock"></i>
-                    <p>10:00 - 18:00, Mon-Sat</p>
+                    <p>10:00 - 18:00, Monday to Saturday</p>
                 </li>
-
-            </div>
+            </ul>
         </div>
-
 
         <div id="form-details">
-            <form action="">
+            <form id="contact-form">
                 <h2>We'd love to hear from you</h2>
-                <input type="text" placeholder="Your Name">
-                <input type="text" placeholder="Your E-mail or Phone Number">
-                <textarea name="" id="" cols="9" rows="4" placeholder="Your Message"></textarea>
-                <button class="normal">Submit</button>
+                <input type="text" id="contact-name" placeholder="Your Name" required>
+                <input type="text" id="contact-email" placeholder="Your Email or Phone Number" required>
+                <textarea id="contact-message" cols="9" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="normal">
+                    <i class="fas fa-paper-plane" style="margin-right:8px"></i>Send Message
+                </button>
             </form>
         </div>
-
     </section>
 
-
+    <!-- NEWSLETTER -->
     <section id="newsletter" class="section-p1 section-m1">
         <div class="newstext">
             <h4>Sign Up For Newsletters</h4>
-            <p>Get E-mail updates about our latest shop and <span>special offers</span></p>
+            <p>Get e-mail updates about our latest shop and <span>special offers</span></p>
         </div>
         <div class="form">
-            <input type="text" placeholder="Your email address">
-            <button class="normal">Sign Up</button>
+            <input type="email" id="newsletter-email" placeholder="Your email address">
+            <button class="normal" onclick="subscribeNewsletter(document.getElementById('newsletter-email').value)">Sign Up</button>
         </div>
     </section>
 
-
-
+    <!-- FOOTER -->
     <footer class="section-p1">
         <div class="col">
-            <img class="logo" src="images/logo.png" alt="logo picture">
+            <img class="logo" src="images/logo.png" alt="Stay Home">
             <h4>Contact</h4>
             <p><strong>Address:</strong> Chatogram, Bangladesh</p>
-            <p><strong>Phone:</strong> +880 1823456789, +880 1898765432</p>
-            <p><strong>Hours:</strong> 10:00 - 18:00, Mon-Sat</p>
-            <div class="follow">
-                <h4>Folow Us</h4>
-                <div class="icon">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-pinterest-p"></i>
-                    <i class="fab fa-youtube"></i>
-                </div>
+            <p><strong>Phone:</strong> +880 1823456789</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon–Sat</p>
+            <div class="follow"><h4>Follow Us</h4>
+                <div class="icon"><i class="fab fa-facebook-f"></i><i class="fab fa-twitter"></i><i class="fab fa-instagram"></i><i class="fab fa-pinterest-p"></i><i class="fab fa-youtube"></i></div>
             </div>
         </div>
-
-        <div class="col">
-            <h4>About</h4>
-            <a href="#">About Us</a>
-            <a href="#">Delivery Information</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & COnditions</a>
-            <a href="#">Contact Us</a>
+        <div class="col"><h4>About</h4><a href="about.html">About Us</a><a href="#">Delivery Information</a><a href="#">Privacy Policy</a><a href="#">Terms & Conditions</a><a href="contact.html">Contact Us</a></div>
+        <div class="col"><h4>My Account</h4><a href="login.html">Sign In</a><a href="cart.html">View Cart</a><a href="wishlist.html">My Wishlist</a><a href="orders.html">Track My Order</a></div>
+        <div class="col install"><h4>Install App</h4><p>From App Store or Google Play</p>
+            <div class="row"><img src="images/pay/app.jpg" alt=""><img src="images/pay/play.jpg" alt=""></div>
+            <p>Secured Payment Gateways</p><img src="images/pay/pay.png" alt="">
         </div>
-        <div class="col">
-            <h4>My Account</h4>
-            <a href="#">Sign In</a>
-            <a href="#">View Cart</a>
-            <a href="#">My Wishlist</a>
-            <a href="#">Track My Order</a>
-            <a href="#">Help</a>
-        </div>
-
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>From App Store or Google Play</p>
-            <div class="row">
-                <img src="images/pay/app.jpg" alt="">
-                <img src="images/pay/play.jpg" alt="">
-            </div>
-            <p>Secured Payment Gateways</p>
-            <img src="images/pay/pay.png" alt="">
-        </div>
-
-        <div class="copyright">
-            <p> &copy; 2026, All rights reserved for the rightful owner</p>
-        </div>
-
-        
+        <div class="copyright"><p>&copy; 2026 Stay Home. All rights reserved.</p></div>
     </footer>
 
-
-
-
-    <!-- js -->
-     <script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
-

@@ -4,6 +4,62 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v1.0.0] - 2026-07-19
+### Phase 10 — Frontend Upgrade & Integration (Major Release)
+#### Added
+* Premium CSS design system (`style.css`) — complete rewrite:
+  * Google Fonts (Inter) integration for modern typography
+  * CSS custom properties (design tokens) for colors, spacing, shadows, radii
+  * Glassmorphism sticky header with scroll effect
+  * Toast notification system with success/error/warning variants
+  * Skeleton loader animations for async content
+  * Login modal overlay with animated transitions
+  * Responsive shop layout with sidebar + main columns
+  * Premium product card with hover overlay, wishlist action, add-to-cart button
+  * Full product detail page styles: size selector, qty controls, availability badge, description
+  * Cart table with modern styling and inline quantity control
+  * Checkout layout: 2-column form + summary sidebar
+  * Order cards with color-coded status badges
+  * Wishlist grid layout
+  * Premium auth card design for login/register
+  * Mobile-first responsive breakpoints at 1100px, 900px, 640px
+* New pages created:
+  * `checkout.html` — Shipping address form, payment method selector, real-time order preview
+  * `orders.html` — Full order history with status, item list, cancel functionality
+  * `wishlist.html` — Wishlist grid with add-to-cart and remove actions
+  * `login.html` — Premium JWT login form
+  * `register.html` — Registration form with backend integration
+* Full `script.js` API integration layer:
+  * Auth module: JWT persistence in localStorage, login/logout, user state
+  * Fetch wrapper with auth headers and 401/403 handling
+  * Toast notification system
+  * Header auth state renderer (dynamic user dropdown / login button)
+  * Login modal accessible from any page
+  * Cart badge: live item count in navbar
+  * `quickAddToCart()` — Add product to cart from any product card
+  * `toggleWishlist()` — Add/remove products from wishlist with state toggle
+  * `subscribeNewsletter()` — Newsletter sign-up connected to backend
+  * Home page: loads featured products and new arrivals from API
+  * Shop page: loads categories into sidebar, products with search + sort + pagination
+  * Product detail page: full dynamic rendering from `/api/products/{id}`
+  * Cart page: live items, remove, update quantity, dynamic totals
+  * Checkout page: order preview from backend, place order flow
+  * Orders page: order history, cancel order
+  * Wishlist page: load items, remove item
+  * Contact form: connected to backend contact endpoint
+  * Auto page detection router using `DOMContentLoaded`
+  * Mobile hamburger nav with smooth open/close animation
+#### Upgraded Pages
+* `index.html` — Dynamic hero, features, product sections (API-driven), newsletter
+* `shop.html` — Category sidebar filter, search, sort, paginated grid
+* `sproduct.html` — Full API-driven product detail with image gallery
+* `cart.html` — Live cart from backend with dynamic totals
+* `contact.html` — Backend-connected form with toast response
+* `about.html` — Stats counters, improved copy
+* `blog.html` — Category tags, improved layout
+
+---
+
 ## [v0.3.0] - 2026-07-19
 ### Added
 * Category Module implementation:

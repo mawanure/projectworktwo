@@ -7,6 +7,7 @@ com\stayhome\entity\User$UserBuilder.class
 com\stayhome\repository\CategoryRepository.class
 com\stayhome\dto\CheckoutRequest.class
 com\stayhome\exception\ResourceConflictException.class
+com\stayhome\dto\NewsletterSubscriberResponse.class
 com\stayhome\repository\NewsletterSubscriberRepository.class
 com\stayhome\repository\OrderRepository.class
 com\stayhome\dto\LoginRequest.class
@@ -23,7 +24,9 @@ com\stayhome\dto\OrderResponse.class
 com\stayhome\dto\CategoryResponse.class
 com\stayhome\entity\Product.class
 com\stayhome\controller\CategoryController.class
+com\stayhome\dto\DashboardStatsResponse$DashboardStatsResponseBuilder.class
 com\stayhome\dto\CartResponse$CartResponseBuilder.class
+com\stayhome\dto\ContactMessageResponse$ContactMessageResponseBuilder.class
 com\stayhome\entity\Order$OrderBuilder.class
 com\stayhome\dto\RegisterRequest.class
 com\stayhome\dto\WishlistItemResponse$WishlistItemResponseBuilder.class
@@ -31,6 +34,7 @@ com\stayhome\entity\WishlistItem.class
 com\stayhome\security\JwtAuthFilter.class
 com\stayhome\entity\Category.class
 com\stayhome\dto\WishlistItemRequest.class
+com\stayhome\dto\DashboardStatsResponse.class
 com\stayhome\dto\CheckoutPreviewResponse.class
 com\stayhome\dto\CheckoutPreviewResponse$CheckoutPreviewResponseBuilder.class
 com\stayhome\entity\OrderStatus.class
@@ -40,11 +44,12 @@ com\stayhome\controller\ProductController.class
 com\stayhome\dto\PaymentResponse.class
 com\stayhome\repository\WishlistItemRepository.class
 com\stayhome\StayHomeApplication.class
-com\stayhome\controller\AdminOrderController.class
 com\stayhome\dto\ProductSummaryResponse$ProductSummaryResponseBuilder.class
+com\stayhome\service\AdminService.class
 com\stayhome\service\CategoryService.class
 com\stayhome\service\CartService.class
 com\stayhome\service\ProductService.class
+com\stayhome\controller\AdminController.class
 com\stayhome\entity\OrderItem$OrderItemBuilder.class
 com\stayhome\controller\CartController.class
 com\stayhome\dto\RegisterRequest$RegisterRequestBuilder.class
@@ -61,6 +66,7 @@ com\stayhome\dto\UserResponse.class
 com\stayhome\dto\WishlistResponse$WishlistResponseBuilder.class
 com\stayhome\repository\CartItemRepository.class
 com\stayhome\dto\CartItemResponse.class
+com\stayhome\dto\ContactMessageResponse.class
 com\stayhome\entity\Product$ProductBuilder.class
 com\stayhome\dto\OrderItemResponse$OrderItemResponseBuilder.class
 com\stayhome\dto\LoginRequest$LoginRequestBuilder.class
@@ -85,6 +91,7 @@ com\stayhome\repository\OrderItemRepository.class
 com\stayhome\entity\CartItem$CartItemBuilder.class
 com\stayhome\exception\ErrorDetails$ErrorDetailsBuilder.class
 com\stayhome\security\JwtUtils.class
+com\stayhome\dto\NewsletterSubscriberResponse$NewsletterSubscriberResponseBuilder.class
 com\stayhome\dto\WishlistItemRequest$WishlistItemRequestBuilder.class
 com\stayhome\entity\PaymentStatus.class
 com\stayhome\exception\ErrorDetails.class
