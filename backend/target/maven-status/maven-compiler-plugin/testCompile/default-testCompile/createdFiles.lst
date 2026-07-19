@@ -1,0 +1,6 @@
+com\stayhome\controller\OrderPaymentIntegrationTest.class
+com\stayhome\service\AuthServiceTest.class
+com\stayhome\service\OrderServiceTest.class
+com\stayhome\controller\PublicContentControllerTest.class
+com\stayhome\service\CartServiceTest.class
+com\stayhome\controller\AuthIntegrationTest.class

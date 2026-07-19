@@ -1,0 +1,147 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.stayhome:stayhome >------------------------
+[INFO] Building stayhome 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.2.5:run (default-cli) > test-compile @ stayhome >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ stayhome ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ stayhome ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 83 source files with javac [debug release 17] to target\classes
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by lombok.permit.Permit
+WARNING: Please consider reporting this to the maintainers of class lombok.permit.Permit
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ stayhome ---
+[INFO] skip non existing resourceDirectory D:\Mahfuz\Project\projectworktwo\backend\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ stayhome ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 2 source files with javac [debug release 17] to target\test-classes
+[INFO] 
+[INFO] <<< spring-boot:3.2.5:run (default-cli) < test-compile @ stayhome <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.2.5:run (default-cli) @ stayhome ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.5)
+
+2026-07-19T20:53:09.374+06:00  INFO 21232 --- [stayhome] [           main] com.stayhome.StayHomeApplication         : Starting StayHomeApplication using Java 25.0.3 with PID 21232 (D:\Mahfuz\Project\projectworktwo\backend\target\classes started by Hp in D:\Mahfuz\Project\projectworktwo\backend)
+2026-07-19T20:53:09.378+06:00  INFO 21232 --- [stayhome] [           main] com.stayhome.StayHomeApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-07-19T20:53:11.782+06:00  INFO 21232 --- [stayhome] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-19T20:53:12.138+06:00  INFO 21232 --- [stayhome] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 321 ms. Found 12 JPA repository interfaces.
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.apache.tomcat.jni.Library in an unnamed module (file:/C:/Users/Hp/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/10.1.20/tomcat-embed-core-10.1.20.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+2026-07-19T20:53:13.949+06:00  INFO 21232 --- [stayhome] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-19T20:53:13.983+06:00  INFO 21232 --- [stayhome] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-19T20:53:13.984+06:00  INFO 21232 --- [stayhome] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-07-19T20:53:14.163+06:00  INFO 21232 --- [stayhome] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-19T20:53:14.169+06:00  INFO 21232 --- [stayhome] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4626 ms
+2026-07-19T20:53:14.693+06:00  INFO 21232 --- [stayhome] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-19T20:53:14.841+06:00  INFO 21232 --- [stayhome] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-07-19T20:53:14.962+06:00  INFO 21232 --- [stayhome] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-19T20:53:15.638+06:00  INFO 21232 --- [stayhome] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-19T20:53:15.718+06:00  INFO 21232 --- [stayhome] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-19T20:53:16.218+06:00  INFO 21232 --- [stayhome] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@25e8e59
+2026-07-19T20:53:16.223+06:00  INFO 21232 --- [stayhome] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-19T20:53:16.329+06:00  WARN 21232 --- [stayhome] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-19T20:53:19.731+06:00  INFO 21232 --- [stayhome] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: alter table orders modify column payment_status enum ('UNPAID','PAID','FAILED','REFUNDED') not null
+Hibernate: alter table orders modify column status enum ('PENDING','CONFIRMED','PROCESSING','SHIPPED','DELIVERED','CANCELLED') not null
+2026-07-19T20:53:20.249+06:00  INFO 21232 --- [stayhome] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-19T20:53:20.937+06:00  INFO 21232 --- [stayhome] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-07-19T20:53:24.246+06:00  WARN 21232 --- [stayhome] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-19T20:53:25.317+06:00  INFO 21232 --- [stayhome] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b60acb3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@a99f50e, org.springframework.security.web.context.SecurityContextHolderFilter@726c1889, org.springframework.security.web.header.HeaderWriterFilter@4dd32cf5, org.springframework.web.filter.CorsFilter@18211894, org.springframework.security.web.authentication.logout.LogoutFilter@7fab8e9a, com.stayhome.security.JwtAuthFilter@7adde112, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7da7a932, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5d6d21e2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@d61ac34, org.springframework.security.web.session.SessionManagementFilter@6fe37577, org.springframework.security.web.access.ExceptionTranslationFilter@3c0cfaad, org.springframework.security.web.access.intercept.AuthorizationFilter@543eacd5]
+2026-07-19T20:53:26.301+06:00  INFO 21232 --- [stayhome] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2026-07-19T20:53:26.320+06:00  INFO 21232 --- [stayhome] [           main] com.stayhome.StayHomeApplication         : Started StayHomeApplication in 17.897 seconds (process running for 18.717)
+Hibernate: select u1_0.id from users u1_0 where u1_0.email=? limit ?
+Hibernate: select u1_0.id from users u1_0 where u1_0.email=? limit ?
+Hibernate: select count(*) from categories c1_0
+Hibernate: select count(*) from products p1_0
+DATABASE MIGRATION: successfully converted status and payment_status to VARCHAR.
+2026-07-19T20:53:40.110+06:00  INFO 21232 --- [stayhome] [nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-19T20:53:40.111+06:00  INFO 21232 --- [stayhome] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-19T20:53:40.112+06:00  INFO 21232 --- [stayhome] [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Hibernate: select p1_0.id,p1_0.category_id,p1_0.created_at,p1_0.description,p1_0.is_active,p1_0.is_featured,p1_0.is_new_arrival,p1_0.name,p1_0.price,p1_0.rating,p1_0.sizes,p1_0.stock from products p1_0 where p1_0.is_active=1 and (? is null or lower(p1_0.name) like lower(concat('%',?,'%')) escape '' or lower(p1_0.description) like lower(concat('%',?,'%')) escape '') and (? is null or p1_0.category_id=?) order by p1_0.id desc limit ?,?
+Hibernate: select p1_0.id,p1_0.category_id,p1_0.created_at,p1_0.description,p1_0.is_active,p1_0.is_featured,p1_0.is_new_arrival,p1_0.name,p1_0.price,p1_0.rating,p1_0.sizes,p1_0.stock from products p1_0 where p1_0.is_active=1 and (? is null or lower(p1_0.name) like lower(concat('%',?,'%')) escape '' or lower(p1_0.description) like lower(concat('%',?,'%')) escape '') and (? is null or p1_0.category_id=?) order by p1_0.id desc limit ?,?
+Hibernate: select p1_0.id,p1_0.category_id,p1_0.created_at,p1_0.description,p1_0.is_active,p1_0.is_featured,p1_0.is_new_arrival,p1_0.name,p1_0.price,p1_0.rating,p1_0.sizes,p1_0.stock from products p1_0 where p1_0.is_active=1 and (? is null or lower(p1_0.name) like lower(concat('%',?,'%')) escape '' or lower(p1_0.description) like lower(concat('%',?,'%')) escape '') and (? is null or p1_0.category_id=?) order by p1_0.id desc limit ?,?
+Hibernate: select bp1_0.id,bp1_0.author,bp1_0.content,bp1_0.created_at,bp1_0.image_url,bp1_0.title from blog_posts bp1_0 order by bp1_0.created_at desc limit ?,?
+Hibernate: select bp1_0.id,bp1_0.author,bp1_0.content,bp1_0.created_at,bp1_0.image_url,bp1_0.title from blog_posts bp1_0 order by bp1_0.created_at desc limit ?,?
+Hibernate: select u1_0.id from users u1_0 where u1_0.email=? limit ?
+Hibernate: insert into users (address,blocked,created_at,email,name,password,phone,role,updated_at) values (?,?,?,?,?,?,?,?,?)
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select ci1_0.id,ci1_0.created_at,ci1_0.product_id,ci1_0.quantity,ci1_0.size,ci1_0.updated_at,ci1_0.user_id from cart_items ci1_0 where ci1_0.user_id=?
+Hibernate: select wi1_0.id,wi1_0.created_at,wi1_0.product_id,wi1_0.user_id from wishlist_items wi1_0 where wi1_0.user_id=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select p1_0.id,p1_0.category_id,p1_0.created_at,p1_0.description,p1_0.is_active,p1_0.is_featured,p1_0.is_new_arrival,p1_0.name,p1_0.price,p1_0.rating,p1_0.sizes,p1_0.stock from products p1_0 where p1_0.is_featured and p1_0.is_active
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select p1_0.id,p1_0.category_id,p1_0.created_at,p1_0.description,p1_0.is_active,p1_0.is_featured,p1_0.is_new_arrival,p1_0.name,p1_0.price,p1_0.rating,p1_0.sizes,p1_0.stock from products p1_0 where p1_0.is_new_arrival and p1_0.is_active order by p1_0.created_at desc
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select ci1_0.id,ci1_0.created_at,ci1_0.product_id,ci1_0.quantity,ci1_0.size,ci1_0.updated_at,ci1_0.user_id from cart_items ci1_0 where ci1_0.user_id=?
+Hibernate: select wi1_0.id,wi1_0.created_at,wi1_0.product_id,wi1_0.user_id from wishlist_items wi1_0 where wi1_0.user_id=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select p1_0.id,p1_0.category_id,p1_0.created_at,p1_0.description,p1_0.is_active,p1_0.is_featured,p1_0.is_new_arrival,p1_0.name,p1_0.price,p1_0.rating,p1_0.sizes,p1_0.stock from products p1_0 where p1_0.is_featured and p1_0.is_active
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select p1_0.id,p1_0.category_id,p1_0.created_at,p1_0.description,p1_0.is_active,p1_0.is_featured,p1_0.is_new_arrival,p1_0.name,p1_0.price,p1_0.rating,p1_0.sizes,p1_0.stock from products p1_0 where p1_0.is_new_arrival and p1_0.is_active order by p1_0.created_at desc
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select ci1_0.id,ci1_0.created_at,ci1_0.product_id,ci1_0.quantity,ci1_0.size,ci1_0.updated_at,ci1_0.user_id from cart_items ci1_0 where ci1_0.user_id=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select ci1_0.id,ci1_0.created_at,ci1_0.product_id,ci1_0.quantity,ci1_0.size,ci1_0.updated_at,ci1_0.user_id from cart_items ci1_0 where ci1_0.user_id=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select ci1_0.id,ci1_0.created_at,ci1_0.product_id,ci1_0.quantity,ci1_0.size,ci1_0.updated_at,ci1_0.user_id from cart_items ci1_0 where ci1_0.user_id=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select ci1_0.id,ci1_0.created_at,ci1_0.product_id,ci1_0.quantity,ci1_0.size,ci1_0.updated_at,ci1_0.user_id from cart_items ci1_0 where ci1_0.user_id=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select ci1_0.id,ci1_0.created_at,ci1_0.product_id,ci1_0.quantity,ci1_0.size,ci1_0.updated_at,ci1_0.user_id from cart_items ci1_0 where ci1_0.user_id=?
+Hibernate: select wi1_0.id,wi1_0.created_at,wi1_0.product_id,wi1_0.user_id from wishlist_items wi1_0 where wi1_0.user_id=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select p1_0.id,p1_0.category_id,p1_0.created_at,p1_0.description,p1_0.is_active,p1_0.is_featured,p1_0.is_new_arrival,p1_0.name,p1_0.price,p1_0.rating,p1_0.sizes,p1_0.stock from products p1_0 where p1_0.is_featured and p1_0.is_active
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select p1_0.id,p1_0.category_id,p1_0.created_at,p1_0.description,p1_0.is_active,p1_0.is_featured,p1_0.is_new_arrival,p1_0.name,p1_0.price,p1_0.rating,p1_0.sizes,p1_0.stock from products p1_0 where p1_0.is_new_arrival and p1_0.is_active order by p1_0.created_at desc
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select wi1_0.id,wi1_0.created_at,wi1_0.product_id,wi1_0.user_id from wishlist_items wi1_0 where wi1_0.user_id=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select ci1_0.id,ci1_0.created_at,ci1_0.product_id,ci1_0.quantity,ci1_0.size,ci1_0.updated_at,ci1_0.user_id from cart_items ci1_0 where ci1_0.user_id=?
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select c1_0.id,c1_0.description,c1_0.name from categories c1_0
+Hibernate: select u1_0.id,u1_0.address,u1_0.blocked,u1_0.created_at,u1_0.email,u1_0.name,u1_0.password,u1_0.phone,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.email=?
+Hibernate: select p1_0.id,p1_0.category_id,p1_0.created_at,p1_0.description,p1_0.is_active,p1_0.is_featured,p1_0.is_new_arrival,p1_0.name,p1_0.price,p1_0.rating,p1_0.sizes,p1_0.stock from products p1_0 where p1_0.is_active=1 and (? is null or lower(p1_0.name) like lower(concat('%',?,'%')) escape '' or lower(p1_0.description) like lower(concat('%',?,'%')) escape '') and (? is null or p1_0.category_id=?) order by p1_0.id desc limit ?,?
+Hibernate: select c1_0.id,c1_0.description,c1_0.name from categories c1_0
+2026-07-19T21:57:09.226+06:00  WARN 21232 --- [stayhome] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=48s382ms351µs500ns).
+2026-07-19T22:17:55.676+06:00  WARN 21232 --- [stayhome] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=20m16s445ms318µs700ns).
+2026-07-19T22:54:45.936+06:00  WARN 21232 --- [stayhome] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=50s165ms434µs600ns).
+2026-07-19T23:08:46.714+06:00  WARN 21232 --- [stayhome] [l-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12m750ms538µs200ns).

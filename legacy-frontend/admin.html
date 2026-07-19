@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stay Home Admin Dashboard — Internal management panel.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Panel | Stay Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ddfa3fd6c7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="sidebar-brand">
+            <i class="fas fa-store-alt"></i>
+            <span>Stay Home</span>
+            <button class="sidebar-close-btn" id="sidebar-close-btn" onclick="toggleSidebar()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section-label">MAIN</div>
+            <a href="#" class="nav-item active" data-page="dashboard" onclick="navigateTo('dashboard', this)">
+                <i class="fas fa-chart-pie"></i><span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="orders" onclick="navigateTo('orders', this)">
+                <i class="fas fa-shopping-bag"></i><span>Orders</span>
+                <span class="nav-badge" id="nav-pending-badge"></span>
+            </a>
+            <a href="#" class="nav-item" data-page="products" onclick="navigateTo('products', this)">
+                <i class="fas fa-box-open"></i><span>Products</span>
+            </a>
+            <a href="#" class="nav-item" data-page="categories" onclick="navigateTo('categories', this)">
+                <i class="fas fa-tags"></i><span>Categories</span>
+            </a>
+
+            <div class="nav-section-label">PEOPLE</div>
+            <a href="#" class="nav-item" data-page="users" onclick="navigateTo('users', this)">
+                <i class="fas fa-users"></i><span>Users</span>
+            </a>
+            <a href="#" class="nav-item" data-page="payments" onclick="navigateTo('payments', this)">
+                <i class="fas fa-credit-card"></i><span>Payments</span>
+            </a>
+
+            <div class="nav-section-label">SUPPORT</div>
+            <a href="#" class="nav-item" data-page="contact" onclick="navigateTo('contact', this)">
+                <i class="fas fa-envelope"></i><span>Messages</span>
+                <span class="nav-badge" id="nav-msg-badge" style="display:none"></span>
+            </a>
+            <a href="#" class="nav-item" data-page="newsletter" onclick="navigateTo('newsletter', this)">
+                <i class="fas fa-newspaper"></i><span>Newsletter</span>
+            </a>
+
+            <div class="nav-section-label">ACCOUNT</div>
+            <a href="#" class="nav-item" data-page="settings" onclick="navigateTo('settings', this)">
+                <i class="fas fa-cog"></i><span>Settings</span>
+            </a>
+            <a href="index.html" class="nav-item nav-item-danger">
+                <i class="fas fa-arrow-left"></i><span>Back to Site</span>
+            </a>
+            <a href="#" class="nav-item nav-item-danger" onclick="adminLogout()">
+                <i class="fas fa-sign-out-alt"></i><span>Logout</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- OVERLAY for mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- MAIN WRAPPER -->
+    <div class="admin-main" id="admin-main">
+
+        <!-- TOP NAVBAR -->
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <button class="hamburger-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="topbar-breadcrumb">
+                    <span id="breadcrumb-page">Dashboard</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <a href="index.html" class="topbar-icon-btn" title="View Store" target="_blank">
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+                <div class="admin-profile-wrapper">
+                    <button class="admin-profile-btn" id="admin-profile-btn">
+                        <div class="admin-avatar" id="admin-avatar-initials">A</div>
+                        <div class="admin-profile-info">
+                            <span class="admin-profile-name" id="admin-display-name">Admin</span>
+                            <span class="admin-profile-role">Administrator</span>
+                        </div>
+                        <i class="fas fa-chevron-down" style="font-size:11px;color:var(--admin-text-muted)"></i>
+                    </button>
+                    <div class="admin-profile-dropdown" id="admin-profile-dropdown">
+                        <a href="#" class="dropdown-item" onclick="navigateTo('settings', null)">
+                            <i class="fas fa-user-circle"></i> My Profile
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item danger" onclick="adminLogout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <main class="admin-content" id="admin-content">
+
+            <!-- ======================== DASHBOARD ======================== -->
+            <section id="page-dashboard" class="admin-page active">
+                <div class="page-header">
+                    <div>
+                        <h1>Dashboard</h1>
+                        <p class="page-subtitle">Welcome back! Here's what's happening.</p>
+                    </div>
+                    <button class="btn-primary-admin" onclick="loadDashboard()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid" id="stats-grid">
+                    <div class="stat-card skeleton-card"></div>
+                    <div class="stat-card skeleton-card"></div>
+                    <div class="stat-card skeleton-card"></div>
+                    <div class="stat-card skeleton-card"></div>
+                    <div class="stat-card skeleton-card"></div>
+                    <div class="stat-card skeleton-card"></div>
+                    <div class="stat-card skeleton-card"></div>
+                    <div class="stat-card skeleton-card"></div>
+                </div>
+
+                <!-- Lower row: Recent Orders + Low Stock -->
+                <div class="dashboard-grid-2">
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3>Recent Orders</h3>
+                            <a href="#" onclick="navigateTo('orders', null)" class="card-link">View All</a>
+                        </div>
+                        <div class="table-wrap" id="recent-orders-table">
+                            <div class="table-loading">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3>Low Stock Products</h3>
+                            <a href="#" onclick="navigateTo('products', null)" class="card-link">View All</a>
+                        </div>
+                        <div id="low-stock-list" class="low-stock-list">
+                            <div class="table-loading">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================== ORDERS ======================== -->
+            <section id="page-orders" class="admin-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Orders</h1>
+                        <p class="page-subtitle">Manage and update customer orders.</p>
+                    </div>
+                </div>
+                <div class="admin-card">
+                    <div class="table-toolbar">
+                        <div class="search-wrap">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="order-search" placeholder="Search by address or phone..." oninput="debounce(loadOrders, 400)()">
+                        </div>
+                        <select id="order-status-filter" onchange="loadOrders()">
+                            <option value="">All Statuses</option>
+                            <option value="PENDING">Pending</option>
+                            <option value="CONFIRMED">Confirmed</option>
+                            <option value="PROCESSING">Processing</option>
+                            <option value="SHIPPED">Shipped</option>
+                            <option value="DELIVERED">Delivered</option>
+                            <option value="CANCELLED">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Customer</th>
+                                    <th>Address</th>
+                                    <th>Total</th>
+                                    <th>Payment</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-tbody">
+                                <tr><td colspan="8" class="table-loading">Loading orders...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-wrap" id="orders-pagination"></div>
+                </div>
+            </section>
+
+            <!-- ======================== PRODUCTS ======================== -->
+            <section id="page-products" class="admin-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Products</h1>
+                        <p class="page-subtitle">Manage your product catalog.</p>
+                    </div>
+                    <button class="btn-primary-admin" onclick="openProductModal()">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                </div>
+                <div class="admin-card">
+                    <div class="table-toolbar">
+                        <div class="search-wrap">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="product-search" placeholder="Search products..." oninput="debounce(loadProducts, 400)()">
+                        </div>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap">
+                            <select id="product-category-filter" onchange="loadProducts()">
+                                <option value="">All Categories</option>
+                            </select>
+                            <select id="product-stock-filter" onchange="loadProducts()">
+                                <option value="">All Stock</option>
+                                <option value="low">Low Stock (≤5)</option>
+                                <option value="out">Out of Stock</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-tbody">
+                                <tr><td colspan="7" class="table-loading">Loading products...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-wrap" id="products-pagination"></div>
+                </div>
+            </section>
+
+            <!-- ======================== CATEGORIES ======================== -->
+            <section id="page-categories" class="admin-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Categories</h1>
+                        <p class="page-subtitle">Manage product categories.</p>
+                    </div>
+                    <button class="btn-primary-admin" onclick="openCategoryModal()">
+                        <i class="fas fa-plus"></i> Add Category
+                    </button>
+                </div>
+                <div class="admin-card">
+                    <div class="table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="categories-tbody">
+                                <tr><td colspan="4" class="table-loading">Loading categories...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================== USERS ======================== -->
+            <section id="page-users" class="admin-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Users</h1>
+                        <p class="page-subtitle">View and manage registered users.</p>
+                    </div>
+                </div>
+                <div class="admin-card">
+                    <div class="table-toolbar">
+                        <div class="search-wrap">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="user-search" placeholder="Search by name, email, phone..." oninput="debounce(loadUsers, 400)()">
+                        </div>
+                        <select id="user-role-filter" onchange="loadUsers()">
+                            <option value="">All Roles</option>
+                            <option value="CUSTOMER">Customers</option>
+                            <option value="ADMIN">Admins</option>
+                        </select>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Role</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-tbody">
+                                <tr><td colspan="7" class="table-loading">Loading users...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination-wrap" id="users-pagination"></div>
+                </div>
+            </section>
+
+            <!-- ======================== PAYMENTS ======================== -->
+            <section id="page-payments" class="admin-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Payments</h1>
+                        <p class="page-subtitle">Track all payment transactions.</p>
+                    </div>
+                </div>
+                <div class="admin-card">
+                    <div class="table-toolbar">
+                        <select id="payment-status-filter" onchange="loadPayments()">
+                            <option value="">All Statuses</option>
+                            <option value="UNPAID">Unpaid</option>
+                            <option value="PAID">Paid</option>
+                            <option value="FAILED">Failed</option>
+                            <option value="REFUNDED">Refunded</option>
+                        </select>
+                        <select id="payment-method-filter" onchange="loadPayments()">
+                            <option value="">All Methods</option>
+                            <option value="COD">Cash on Delivery</option>
+                            <option value="CREDIT_CARD">Credit Card</option>
+                            <option value="MOBILE_BANKING">Mobile Banking</option>
+                        </select>
+                    </div>
+                    <div class="table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Order #</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                    <th>Status</th>
+                                    <th>Paid At</th>
+                                    <th>Created</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payments-tbody">
+                                <tr><td colspan="7" class="table-loading">Loading payments...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================== CONTACT ======================== -->
+            <section id="page-contact" class="admin-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Contact Messages</h1>
+                        <p class="page-subtitle">Customer support messages and inquiries.</p>
+                    </div>
+                </div>
+                <div class="admin-card">
+                    <div class="table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Name</th>
+                                    <th>Contact</th>
+                                    <th>Message</th>
+                                    <th>Received</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contact-tbody">
+                                <tr><td colspan="5" class="table-loading">Loading messages...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================== NEWSLETTER ======================== -->
+            <section id="page-newsletter" class="admin-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Newsletter Subscribers</h1>
+                        <p class="page-subtitle">Manage email subscribers.</p>
+                    </div>
+                    <button class="btn-outline-admin" onclick="exportNewsletterCSV()">
+                        <i class="fas fa-download"></i> Export CSV
+                    </button>
+                </div>
+                <div class="admin-card">
+                    <div class="table-wrap">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>#ID</th>
+                                    <th>Email</th>
+                                    <th>Subscribed At</th>
+                                </tr>
+                            </thead>
+                            <tbody id="newsletter-tbody">
+                                <tr><td colspan="3" class="table-loading">Loading subscribers...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================== SETTINGS ======================== -->
+            <section id="page-settings" class="admin-page">
+                <div class="page-header">
+                    <div>
+                        <h1>Settings</h1>
+                        <p class="page-subtitle">Manage your admin account.</p>
+                    </div>
+                </div>
+                <div class="settings-grid">
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3>Admin Profile</h3>
+                        </div>
+                        <div class="settings-profile-block" id="settings-profile-block">
+                            <div class="settings-avatar" id="settings-avatar">A</div>
+                            <div id="settings-profile-info"></div>
+                        </div>
+                    </div>
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="settings-actions">
+                            <a href="index.html" target="_blank" class="settings-action-btn">
+                                <i class="fas fa-store"></i>
+                                <span>View Storefront</span>
+                            </a>
+                            <button class="settings-action-btn" onclick="loadDashboard(); navigateTo('dashboard', null)">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>Refresh Dashboard</span>
+                            </button>
+                            <button class="settings-action-btn danger" onclick="adminLogout()">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ======================== MODALS ======================== -->
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirm-modal">
+        <div class="modal-box" style="max-width:420px">
+            <div class="modal-header">
+                <div class="modal-title" id="confirm-modal-title">Confirm Action</div>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-modal-message">Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline-admin" onclick="closeConfirmModal()">Cancel</button>
+                <button class="btn-danger-admin" id="confirm-modal-ok">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="product-modal">
+        <div class="modal-box" style="max-width:640px">
+            <div class="modal-header">
+                <div class="modal-title" id="product-modal-title">Add Product</div>
+                <button class="modal-close" onclick="closeProductModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label>Product Name *</label>
+                            <input type="text" id="p-name" required placeholder="e.g. Classic T-Shirt">
+                        </div>
+                        <div class="form-group">
+                            <label>Category *</label>
+                            <select id="p-category" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price (৳) *</label>
+                            <input type="number" id="p-price" required min="0" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label>Stock *</label>
+                            <input type="number" id="p-stock" required min="0" placeholder="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Sizes (comma separated)</label>
+                        <input type="text" id="p-sizes" placeholder="S, M, L, XL, XXL">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="p-description" rows="3" placeholder="Product description..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URLs (one per line)</label>
+                        <textarea id="p-images" rows="3" placeholder="images/products/f1.jpg&#10;images/products/f2.jpg"></textarea>
+                        <small style="color:var(--admin-text-muted)">First image will be set as the primary image.</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline-admin" onclick="closeProductModal()">Cancel</button>
+                <button class="btn-primary-admin" onclick="saveProduct()">
+                    <i class="fas fa-save"></i> Save Product
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Modal -->
+    <div class="modal-overlay" id="category-modal">
+        <div class="modal-box" style="max-width:480px">
+            <div class="modal-header">
+                <div class="modal-title" id="category-modal-title">Add Category</div>
+                <button class="modal-close" onclick="closeCategoryModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="category-form">
+                    <input type="hidden" id="category-id">
+                    <div class="form-group">
+                        <label>Category Name *</label>
+                        <input type="text" id="c-name" required placeholder="e.g. Men's Wear">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="c-description" rows="3" placeholder="Optional description..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline-admin" onclick="closeCategoryModal()">Cancel</button>
+                <button class="btn-primary-admin" onclick="saveCategory()">
+                    <i class="fas fa-save"></i> Save Category
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Status Modal -->
+    <div class="modal-overlay" id="order-status-modal">
+        <div class="modal-box" style="max-width:420px">
+            <div class="modal-header">
+                <div class="modal-title">Update Order Status</div>
+                <button class="modal-close" onclick="closeOrderStatusModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="update-order-id">
+                <div class="form-group">
+                    <label>Order #<span id="update-order-display-id"></span></label>
+                    <select id="update-order-status">
+                        <option value="PENDING">Pending</option>
+                        <option value="CONFIRMED">Confirmed</option>
+                        <option value="PROCESSING">Processing</option>
+                        <option value="SHIPPED">Shipped</option>
+                        <option value="DELIVERED">Delivered</option>
+                        <option value="CANCELLED">Cancelled</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline-admin" onclick="closeOrderStatusModal()">Cancel</button>
+                <button class="btn-primary-admin" onclick="submitOrderStatus()">
+                    <i class="fas fa-check"></i> Update Status
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock Update Modal -->
+    <div class="modal-overlay" id="stock-modal">
+        <div class="modal-box" style="max-width:380px">
+            <div class="modal-header">
+                <div class="modal-title">Update Stock</div>
+                <button class="modal-close" onclick="closeStockModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="stock-product-id">
+                <div class="form-group">
+                    <label>Product: <strong id="stock-product-name"></strong></label>
+                    <input type="number" id="stock-value" min="0" placeholder="Enter new stock quantity">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-outline-admin" onclick="closeStockModal()">Cancel</button>
+                <button class="btn-primary-admin" onclick="submitStock()">
+                    <i class="fas fa-save"></i> Update Stock
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="admin-toast-container" id="admin-toast-container"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
