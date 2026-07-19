@@ -148,6 +148,16 @@ public class AdminController {
         return ResponseEntity.ok(payment);
     }
 
+    @PutMapping("/payments/{id}/status")
+    public ResponseEntity<PaymentResponse> updatePaymentStatus(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> request
+    ) {
+        PaymentStatus status = PaymentStatus.valueOf(request.get("status").toUpperCase());
+        PaymentResponse payment = adminService.updatePaymentStatus(id, status);
+        return ResponseEntity.ok(payment);
+    }
+
     // ========= Contact Messages & Subscribers =========
 
     @GetMapping("/contact-messages")

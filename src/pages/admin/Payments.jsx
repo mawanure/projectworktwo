@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 import apiClient from '../../api/apiClient';
 
 const Payments = () => {
   const [statusFilter, setStatusFilter] = useState('');
   const [methodFilter, setMethodFilter] = useState('');
+  const queryClient = useQueryClient();
 
   // Fetch Payments
   const { data: payments, isLoading } = useQuery({
@@ -15,6 +17,20 @@ const Payments = () => {
       if (methodFilter) params.method = methodFilter;
       const response = await apiClient.get('/api/admin/payments', { params });
       return response.data;
+    },
+  });
+
+  // Mutation: Update Payment Status
+  const updatePaymentStatusMutation = useMutation({
+    mutationFn: async ({ id, status }) => {
+      return (await apiClient.put(`/api/admin/payments/${id}/status`, { status })).data;
+    },
+    onSuccess: () => {
+      toast.success('Payment status updated');
+      queryClient.invalidateQueries({ queryKey: ['admin', 'payments'] });
+    },
+    onError: () => {
+      toast.error('Failed to update payment status');
     },
   });
 
@@ -97,9 +113,16 @@ const Payments = () => {
                   {payment.paidAt ? new Date(payment.paidAt).toLocaleString() : 'Not Paid'}
                 </td>
                 <td className="p-4">
-                  <span className={`px-2.5 py-1 text-xs font-bold rounded-full border ${getStatusColor(payment.paymentStatus)}`}>
-                    {payment.paymentStatus}
-                  </span>
+                  <select
+                    value={payment.paymentStatus}
+                    onChange={(e) => updatePaymentStatusMutation.mutate({ id: payment.id, status: e.target.value })}
+                    className={`px-2 py-1 text-xs font-bold rounded-lg border focus:outline-none focus:ring-1 focus:ring-primary bg-white cursor-pointer ${getStatusColor(payment.paymentStatus)}`}
+                  >
+                    <option value="UNPAID">UNPAID</option>
+                    <option value="PAID">PAID</option>
+                    <option value="FAILED">FAILED</option>
+                    <option value="REFUNDED">REFUNDED</option>
+                  </select>
                 </td>
               </tr>
             ))}

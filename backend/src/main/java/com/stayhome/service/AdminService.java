@@ -171,6 +171,27 @@ public class AdminService {
         return mapToPaymentResponse(payment);
     }
 
+    @Transactional
+    public PaymentResponse updatePaymentStatus(Long paymentId, PaymentStatus status) {
+        Payment payment = paymentRepository.findById(paymentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Payment record not found with id: " + paymentId));
+        payment.setPaymentStatus(status);
+        if (status == PaymentStatus.PAID) {
+            payment.setPaidAt(LocalDateTime.now());
+        } else {
+            payment.setPaidAt(null);
+        }
+
+        // Sync with associated Order's paymentStatus
+        Order order = payment.getOrder();
+        if (order != null) {
+            order.setPaymentStatus(status);
+            orderRepository.save(order);
+        }
+
+        return mapToPaymentResponse(paymentRepository.save(payment));
+    }
+
     // ========= Contact Messages / Tickets =========
 
     public List<ContactMessageResponse> getAllContactMessages() {
