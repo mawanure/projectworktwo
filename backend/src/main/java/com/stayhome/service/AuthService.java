@@ -4,6 +4,7 @@ import com.stayhome.dto.AuthResponse;
 import com.stayhome.dto.LoginRequest;
 import com.stayhome.dto.RegisterRequest;
 import com.stayhome.dto.UserResponse;
+import com.stayhome.dto.ChangePasswordRequest;
 import com.stayhome.entity.Role;
 import com.stayhome.entity.User;
 import com.stayhome.exception.EmailAlreadyExistsException;
@@ -79,6 +80,17 @@ public class AuthService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
 
         return mapToUserResponse(user);
+    }
+
+    public void changePassword(ChangePasswordRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByEmail(authentication.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
+            throw new org.springframework.security.authentication.BadCredentialsException("Current password is incorrect");
+        }
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
     }
 
     public UserResponse mapToUserResponse(User user) {

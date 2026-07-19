@@ -7,6 +7,7 @@ com\stayhome\entity\User$UserBuilder.class
 com\stayhome\repository\CategoryRepository.class
 com\stayhome\dto\CheckoutRequest.class
 com\stayhome\exception\ResourceConflictException.class
+com\stayhome\dto\NewsletterSubscribeRequest$NewsletterSubscribeRequestBuilder.class
 com\stayhome\dto\NewsletterSubscriberResponse.class
 com\stayhome\repository\NewsletterSubscriberRepository.class
 com\stayhome\repository\OrderRepository.class
@@ -24,6 +25,7 @@ com\stayhome\dto\OrderResponse.class
 com\stayhome\dto\CategoryResponse.class
 com\stayhome\entity\Product.class
 com\stayhome\controller\CategoryController.class
+com\stayhome\dto\ContactMessageRequest.class
 com\stayhome\dto\DashboardStatsResponse$DashboardStatsResponseBuilder.class
 com\stayhome\dto\CartResponse$CartResponseBuilder.class
 com\stayhome\dto\ContactMessageResponse$ContactMessageResponseBuilder.class
@@ -45,6 +47,7 @@ com\stayhome\dto\PaymentResponse.class
 com\stayhome\repository\WishlistItemRepository.class
 com\stayhome\StayHomeApplication.class
 com\stayhome\dto\ProductSummaryResponse$ProductSummaryResponseBuilder.class
+com\stayhome\controller\PublicContentController.class
 com\stayhome\service\AdminService.class
 com\stayhome\service\CategoryService.class
 com\stayhome\service\CartService.class
@@ -59,6 +62,7 @@ com\stayhome\repository\ProductImageRepository.class
 com\stayhome\dto\UserResponse$UserResponseBuilder.class
 com\stayhome\entity\PaymentMethod.class
 com\stayhome\dto\AuthResponse.class
+com\stayhome\dto\ContactMessageRequest$ContactMessageRequestBuilder.class
 com\stayhome\dto\WishlistResponse.class
 com\stayhome\repository\ProductRepository.class
 com\stayhome\dto\CheckoutPreviewResponse$OrderItemPreview.class
@@ -70,6 +74,7 @@ com\stayhome\dto\ContactMessageResponse.class
 com\stayhome\entity\Product$ProductBuilder.class
 com\stayhome\dto\OrderItemResponse$OrderItemResponseBuilder.class
 com\stayhome\dto\LoginRequest$LoginRequestBuilder.class
+com\stayhome\dto\NewsletterSubscribeRequest.class
 com\stayhome\dto\CartItemResponse$CartItemResponseBuilder.class
 com\stayhome\dto\CategoryResponse$CategoryResponseBuilder.class
 com\stayhome\dto\AuthResponse$AuthResponseBuilder.class
@@ -81,6 +86,7 @@ com\stayhome\service\OrderService.class
 com\stayhome\entity\Order.class
 com\stayhome\security\CustomUserDetailsService.class
 com\stayhome\service\AuthService.class
+com\stayhome\dto\BlogPostResponse$BlogPostResponseBuilder.class
 com\stayhome\dto\ProductSummaryResponse.class
 com\stayhome\security\DelegatedAuthenticationEntryPoint.class
 com\stayhome\entity\Role.class
@@ -106,6 +112,7 @@ com\stayhome\dto\UpdateOrderStatusRequest.class
 com\stayhome\dto\OrderItemResponse.class
 com\stayhome\entity\User.class
 com\stayhome\entity\ContactMessage.class
+com\stayhome\dto\BlogPostResponse.class
 com\stayhome\dto\WishlistItemResponse.class
 com\stayhome\dto\CategoryRequest.class
 com\stayhome\entity\BlogPost.class

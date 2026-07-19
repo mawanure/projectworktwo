@@ -100,7 +100,7 @@ Protected endpoints require passing the JSON Web Token in the Authorization head
 * **Query Parameters:**
   * `page` (default 0)
   * `size` (default 10)
-  * `category` (optional Long ID)
+* `categoryId` (optional Long ID)
   * `search` (optional String name match)
 * **Success Response (HTTP 200 OK):** Standard Spring Data Page payload containing list of products.
 

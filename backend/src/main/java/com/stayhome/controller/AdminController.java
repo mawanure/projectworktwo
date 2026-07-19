@@ -156,9 +156,26 @@ public class AdminController {
         return ResponseEntity.ok(messages);
     }
 
+    @PatchMapping("/contact-messages/{id}/read")
+    public ResponseEntity<ContactMessageResponse> markContactMessageRead(@PathVariable Long id) {
+        return ResponseEntity.ok(adminService.markContactMessageRead(id));
+    }
+
+    @DeleteMapping("/contact-messages/{id}")
+    public ResponseEntity<Void> deleteContactMessage(@PathVariable Long id) {
+        adminService.deleteContactMessage(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping("/newsletter-subscribers")
     public ResponseEntity<List<NewsletterSubscriberResponse>> getNewsletterSubscribers() {
         List<NewsletterSubscriberResponse> subscribers = adminService.getAllNewsletterSubscribers();
         return ResponseEntity.ok(subscribers);
+    }
+
+    @DeleteMapping("/newsletter-subscribers/{id}")
+    public ResponseEntity<Void> deleteNewsletterSubscriber(@PathVariable Long id) {
+        adminService.deleteNewsletterSubscriber(id);
+        return ResponseEntity.noContent().build();
     }
 }

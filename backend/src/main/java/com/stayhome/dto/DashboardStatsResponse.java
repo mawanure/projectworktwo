@@ -17,7 +17,9 @@ public class DashboardStatsResponse {
     private long totalAdmins;
     private long totalCategories;
     private long totalProducts;
+    private long activeProducts;
     private long totalOrders;
+    private long todayOrders;
     private BigDecimal totalRevenue;
     private long pendingOrders;
     private long processingOrders;

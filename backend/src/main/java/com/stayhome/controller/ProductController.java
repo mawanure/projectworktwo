@@ -73,6 +73,23 @@ public class ProductController {
         return ResponseEntity.ok(related);
     }
 
+    @GetMapping("/api/admin/products")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Page<ProductResponse>> getProductsForAdmin(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) Long categoryId) {
+        Pageable pageable = PageRequest.of(Math.max(0, page), Math.min(Math.max(1, size), 100), Sort.by("id").descending());
+        return ResponseEntity.ok(productService.searchProductsForAdmin(search, categoryId, pageable));
+    }
+
+    @GetMapping("/api/admin/products/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ProductResponse> getProductForAdmin(@PathVariable Long id) {
+        return ResponseEntity.ok(productService.getProductByIdForAdmin(id));
+    }
+
     // --- Admin APIs ---
 
     @PostMapping("/api/admin/products")

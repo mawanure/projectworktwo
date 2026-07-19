@@ -41,6 +41,15 @@ public class ProductService {
         return products.map(this::mapToProductSummaryResponse);
     }
 
+    public Page<ProductResponse> searchProductsForAdmin(String search, Long categoryId, Pageable pageable) {
+        return productRepository.searchProducts(search, categoryId, pageable).map(this::mapToProductResponse);
+    }
+
+    public ProductResponse getProductByIdForAdmin(Long id) {
+        return productRepository.findById(id).map(this::mapToProductResponse)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
+    }
+
     public List<ProductSummaryResponse> getFeaturedProducts() {
         return productRepository.findByIsFeaturedTrueAndIsActiveTrue().stream()
                 .map(this::mapToProductSummaryResponse)

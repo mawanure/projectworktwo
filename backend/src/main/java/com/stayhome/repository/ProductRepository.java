@@ -42,4 +42,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     long countByStockLessThanEqualAndStockGreaterThan(Integer maxStock, Integer minStock);
     long countByStock(Integer stock);
+    long countByIsActiveTrue();
 }

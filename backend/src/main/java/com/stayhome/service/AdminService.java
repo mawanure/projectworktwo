@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +46,10 @@ public class AdminService {
         long totalAdmins = userRepository.countByRole(Role.ADMIN);
         long totalCategories = categoryRepository.count();
         long totalProducts = productRepository.count();
+        long activeProducts = productRepository.countByIsActiveTrue();
         long totalOrders = orderRepository.count();
+        LocalDateTime dayStart = LocalDate.now().atStartOfDay();
+        long todayOrders = orderRepository.countByOrderDateBetween(dayStart, dayStart.plusDays(1));
         BigDecimal totalRevenue = orderRepository.calculateTotalRevenue();
 
         long pendingOrders = orderRepository.countByStatus(OrderStatus.PENDING);
@@ -62,7 +66,9 @@ public class AdminService {
                 .totalAdmins(totalAdmins)
                 .totalCategories(totalCategories)
                 .totalProducts(totalProducts)
+                .activeProducts(activeProducts)
                 .totalOrders(totalOrders)
+                .todayOrders(todayOrders)
                 .totalRevenue(totalRevenue)
                 .pendingOrders(pendingOrders)
                 .processingOrders(processingOrders)
@@ -171,6 +177,26 @@ public class AdminService {
         return contactMessageRepository.findAll().stream()
                 .map(this::mapToContactMessageResponse)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public ContactMessageResponse markContactMessageRead(Long id) {
+        ContactMessage message = contactMessageRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Contact message not found with id: " + id));
+        message.setIsRead(true);
+        return mapToContactMessageResponse(contactMessageRepository.save(message));
+    }
+
+    @Transactional
+    public void deleteContactMessage(Long id) {
+        if (!contactMessageRepository.existsById(id)) throw new ResourceNotFoundException("Contact message not found with id: " + id);
+        contactMessageRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteNewsletterSubscriber(Long id) {
+        if (!newsletterSubscriberRepository.existsById(id)) throw new ResourceNotFoundException("Subscriber not found with id: " + id);
+        newsletterSubscriberRepository.deleteById(id);
     }
 
     public List<NewsletterSubscriberResponse> getAllNewsletterSubscribers() {
@@ -295,6 +321,7 @@ public class AdminService {
                 .name(msg.getName())
                 .emailOrPhone(msg.getEmailOrPhone())
                 .message(msg.getMessage())
+                .isRead(msg.getIsRead())
                 .createdAt(msg.getCreatedAt())
                 .build();
     }

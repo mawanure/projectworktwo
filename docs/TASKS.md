@@ -1,5 +1,13 @@
 # Stay Home E-Commerce - Tasks Tracker
 
+## Current implementation status (2026-07-19)
+
+- Contact messages, newsletter subscription, and public blog-read APIs are implemented.
+- Admin dashboard is linked from the authenticated admin menu.
+- Production environment settings and local-origin CORS controls are available.
+- Automated unit tests cover checkout-delivery calculations and public-content validation.
+- A live payment-gateway provider and production deployment still require the merchant and hosting credentials selected by the project owner.
+
 This document tracks implementation items across the project lifecycle.
 
 ---

@@ -4,6 +4,7 @@ import com.stayhome.dto.AuthResponse;
 import com.stayhome.dto.LoginRequest;
 import com.stayhome.dto.RegisterRequest;
 import com.stayhome.dto.UserResponse;
+import com.stayhome.dto.ChangePasswordRequest;
 import com.stayhome.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,11 @@ public class AuthController {
     public ResponseEntity<UserResponse> getProfile() {
         UserResponse response = authService.getProfile();
         return ResponseEntity.ok(response);
+    }
+
+    @PutMapping("/password")
+    public ResponseEntity<Void> changePassword(@Valid @RequestBody ChangePasswordRequest request) {
+        authService.changePassword(request);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -13,6 +13,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findAllByOrderByOrderDateDesc();
 
     long countByStatus(com.stayhome.entity.OrderStatus status);
+    long countByOrderDateBetween(java.time.LocalDateTime start, java.time.LocalDateTime end);
 
     @org.springframework.data.jpa.repository.Query("SELECT COALESCE(SUM(o.totalAmount), 0) FROM Order o WHERE o.status != 'CANCELLED'")
     java.math.BigDecimal calculateTotalRevenue();

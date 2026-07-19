@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stay Home Blog — Fashion tips, trends, and style guides.">
+    <title>Blog | Stay Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ddfa3fd6c7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <section id="header">
+        <a href="index.html"><img src="images/logo.png" alt="Stay Home" class="logo"></a>
+        <div><ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a class="active" href="blog.html">Blog</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul></div>
+        <div class="header-actions" id="header-actions">
+            <a href="cart.html" class="header-icon-btn header-cart-btn"><i class="fa-solid fa-bag-shopping"></i><span class="cart-badge" style="display:none">0</span></a>
+            <button class="header-icon-btn" onclick="openLoginModal()"><i class="fas fa-user"></i></button>
+        </div>
+        <div id="mobile">
+            <a href="cart.html" style="color:#1a1a1a;display:flex;align-items:center;justify-content:center;width:40px;height:40px"><i class="fa-solid fa-bag-shopping"></i><span class="cart-badge" style="display:none">0</span></a>
+            <i id="bar" class="fa-solid fa-bars"></i>
+        </div>
+    </section>
+
+    <section id="page-header2">
+        <h2>#ReadMore</h2>
+        <p>Fashion tips, trends, and style guides for you</p>
+        <div class="breadcrumb">
+            <a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Blog</span>
+        </div>
+    </section>
+
+    <section id="blog">
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="images/blog/b1 (1).jpg" alt="Cotton Jersey Hoodies">
+            </div>
+            <div class="blog-details">
+                <span style="font-size:11px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em">Fashion Trends</span>
+                <h4 style="font-size:20px;margin:8px 0">The Cotton-Jersey Zip-Up Hoodie</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis exercitationem amet numquam fuga assumenda a, quam error tempora...</p>
+                <a href="#">CONTINUE READING</a>
+            </div>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="images/blog/b2 (1).jpg" alt="How to Style a Quilt">
+            </div>
+            <div class="blog-details">
+                <span style="font-size:11px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em">Style Guide</span>
+                <h4 style="font-size:20px;margin:8px 0">How to Style a Quilt</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis exercitationem amet numquam fuga assumenda a, quam error tempora...</p>
+                <a href="#">CONTINUE READING</a>
+            </div>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="images/blog/b3.jpg" alt="Skater Girl Items">
+            </div>
+            <div class="blog-details">
+                <span style="font-size:11px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em">Collections</span>
+                <h4 style="font-size:20px;margin:8px 0">Must-Have Skater Girl Items</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis exercitationem amet numquam fuga assumenda a, quam error tempora...</p>
+                <a href="#">CONTINUE READING</a>
+            </div>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="images/blog/b4 (1).jpg" alt="Runway Trends">
+            </div>
+            <div class="blog-details">
+                <span style="font-size:11px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em">Runway</span>
+                <h4 style="font-size:20px;margin:8px 0">Runway-Inspired Trends 2026</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis exercitationem amet numquam fuga assumenda a, quam error tempora...</p>
+                <a href="#">CONTINUE READING</a>
+            </div>
+        </div>
+        <div class="blog-box">
+            <div class="blog-img">
+                <img src="images/blog/b5.jpg" alt="Womenswear Trends">
+            </div>
+            <div class="blog-details">
+                <span style="font-size:11px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em">Seasonal</span>
+                <h4 style="font-size:20px;margin:8px 0">AW26 Womenswear Trends</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis exercitationem amet numquam fuga assumenda a, quam error tempora...</p>
+                <a href="#">CONTINUE READING</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="pagination" class="section-p1">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#"><i class="fa-solid fa-right-long"></i></a>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get e-mail updates about our latest shop and <span>special offers</span></p>
+        </div>
+        <div class="form">
+            <input type="email" id="newsletter-email" placeholder="Your email address">
+            <button class="normal" onclick="subscribeNewsletter(document.getElementById('newsletter-email').value)">Sign Up</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="images/logo.png" alt="Stay Home">
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> Chatogram, Bangladesh</p>
+            <p><strong>Phone:</strong> +880 1823456789</p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon–Sat</p>
+            <div class="follow"><h4>Follow Us</h4>
+                <div class="icon"><i class="fab fa-facebook-f"></i><i class="fab fa-twitter"></i><i class="fab fa-instagram"></i><i class="fab fa-pinterest-p"></i><i class="fab fa-youtube"></i></div>
+            </div>
+        </div>
+        <div class="col"><h4>About</h4><a href="about.html">About Us</a><a href="#">Delivery Information</a><a href="#">Privacy Policy</a><a href="#">Terms & Conditions</a><a href="contact.html">Contact Us</a></div>
+        <div class="col"><h4>My Account</h4><a href="login.html">Sign In</a><a href="cart.html">View Cart</a><a href="wishlist.html">My Wishlist</a><a href="orders.html">Track My Order</a></div>
+        <div class="col install"><h4>Install App</h4><p>From App Store or Google Play</p>
+            <div class="row"><img src="images/pay/app.jpg" alt=""><img src="images/pay/play.jpg" alt=""></div>
+            <p>Secured Payment Gateways</p><img src="images/pay/pay.png" alt="">
+        </div>
+        <div class="copyright"><p>&copy; 2026 Stay Home. All rights reserved.</p></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

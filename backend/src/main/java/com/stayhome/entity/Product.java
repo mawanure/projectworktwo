@@ -17,7 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "products")
+@Table(name = "products", indexes = {
+        @Index(name = "idx_products_category_active", columnList = "category_id,is_active"),
+        @Index(name = "idx_products_featured_active", columnList = "is_featured,is_active"),
+        @Index(name = "idx_products_new_arrival_active", columnList = "is_new_arrival,is_active")
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

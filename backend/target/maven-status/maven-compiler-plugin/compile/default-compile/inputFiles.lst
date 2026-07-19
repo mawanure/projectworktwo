@@ -53,9 +53,12 @@ D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\repository\O
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\AuthResponse.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\entity\PaymentStatus.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\exception\ErrorDetails.java
+D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\controller\PublicContentController.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\CategoryRequest.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\CartItemRequest.java
+D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\NewsletterSubscribeRequest.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\PaymentResponse.java
+D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\ContactMessageRequest.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\repository\CategoryRepository.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\CartResponse.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\CategoryResponse.java
@@ -72,6 +75,7 @@ D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\controller\C
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\entity\PaymentMethod.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\entity\Role.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\exception\GlobalExceptionHandler.java
+D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\BlogPostResponse.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\repository\ProductImageRepository.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\entity\OrderStatus.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\entity\User.java
