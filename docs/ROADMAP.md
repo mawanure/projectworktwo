@@ -17,14 +17,16 @@ gantt
     Phase 3: Category Module (Completed)   :done, p3, after p2, 2d
     Phase 4: Product Module (Completed)    :done, p4, after p3, 4d
     section Phase 5 & 6
-    Phase 5: Cart & Wishlist (Completed)   :done, p5, after p4, 3d
-    Phase 6: Checkout & Orders (Next Step) :active, p6, after p5, 4d
-    section Phase 7 & 8
-    Phase 7: Contact, Newsletter & Blog     :p7, after p6, 4d
-    Phase 8: Admin Dashboard                :p8, after p7, 5d
-    section Phase 9 & 10
-    Phase 9: Frontend Integration           :p9, after p8, 6d
-    Phase 10: Testing & Deployment          :p10, after p9, 3d
+    Phase 5: Cart (Completed)              :done, p5, after p4, 3d
+    Phase 6: Wishlist (Completed)          :done, p6, after p5, 2d
+    Phase 7: Checkout & Orders (Completed) :done, p7, after p6, 4d
+    Phase 8: Payment Gateway (Completed)   :done, p8, after p7, 4d
+    Phase 9: Admin Dashboard (Completed)   :done, p9, after p8, 5d
+    section Phase 10 & 11
+    Phase 10: Frontend Integration (Next Step) :active, p10, after p9, 6d
+    section Phase 11 & 12
+    Phase 11: Testing                      :p11, after p10, 3d
+    Phase 12: Deployment                   :p12, after p11, 2d
 ```
 
 ---
@@ -55,30 +57,47 @@ gantt
 * Create Product DTO schemas.
 * Expose public REST endpoints (Search catalog, fetch product details, filter by category, retrieve featured products and new arrivals).
 
-### Phase 5: Cart & Wishlist (Cart Complete, Wishlist Outstanding)
-* Set up database tables for saving customer Cart mapping.
-* Create DTO structures.
+### Phase 5: Cart (Completed)
+* Set up `cart_items` database table mapped via JPA to persist customer cart selections.
+* Create Cart DTO structures (`CartItemRequest`, `CartItemResponse`, `CartResponse`).
 * Expose REST APIs to retrieve, add, update quantities, and clear cart items.
+* Stock validation enforcement preventing over-adding items beyond available stock.
 
-### Phase 6: Checkout & Orders
-* Implement checkout endpoints validating stock quantity, sizes, prices, and shipping details.
-* Add transaction boundaries (`@Transactional`) to rollback state if order item mapping fails.
-* Expose customer order history retrieve endpoints and order tracking status checks.
+### Phase 6: Wishlist (Completed)
+* Set up `wishlist_items` database table mapped via JPA with a unique constraint on `(user_id, product_id)` preventing duplicates.
+* Create Wishlist DTO structures (`WishlistItemRequest`, `WishlistItemResponse`, `WishlistResponse`).
+* Expose REST APIs: retrieve wishlist, add item (with duplicate conflict check), remove item, clear all, and check if product exists in wishlist.
 
-### Phase 7: Contact, Newsletter & Blog
-* Set up contact message repository and endpoints to save support tickets.
-* Implement newsletter registration endpoint checks.
-* Implement paginated blog post fetch APIs.
+### Phase 7: Checkout & Orders (Completed)
+* Implement checkout preview endpoint with delivery charge calculation and free delivery threshold.
+* Implement order placement validating cart item availability and stock levels.
+* Add transaction boundaries (`@Transactional`) to enforce atomic stock updates, payment records initialization, and cart clearing.
+* Expose order details query, history endpoints, and cancel order REST APIs restoring product stock.
 
-### Phase 8: Admin Dashboard
-* Secure admin endpoints using role verification (`ROLE_ADMIN`).
-* Implement full CRUD admin endpoints for products, orders, users, blog posts, contact inquiries, and newsletter sub-lists.
+### Phase 8: Payment Gateway (Completed)
+* Implement payment tracking entity mapped to the `payments` table.
+* Synchronize order status transitions (e.g. `CONFIRMED`) to update payment state to `PAID` with transaction timestamps.
+* Handle cancellation refunds setting payments to `REFUNDED`.
+* Expose admin endpoint for updating order statuses and verifying payment status records.
 
-### Phase 9: Frontend Integration
+### Phase 9: Admin Dashboard (Completed)
+* Secure administrative endpoints using role verification (`ROLE_ADMIN`).
+* Implement Dashboard Stats API supplying user counts, products catalog quantities, low stock/out of stock tracking, and total revenue summation.
+* Implement User Management allowing blocking, unblocking, querying by ID, filtering by roles, and changing user credentials/roles.
+* Implement Product Management extensions providing stock updates, activation, and deactivation.
+* Implement Order and Payment Management permitting custom status/method filters, payment listings, and payment detail lookups.
+
+### Phase 10: Frontend Integration
 * Update HTML pages to dynamically fetch database records using JS Fetch API (Search, catalogs, single product details).
 * Implement client-side Auth state management (JWT token persistence in `localStorage`/cookies).
 * Connect cart checkouts and order form queries directly to API endpoints.
 
-### Phase 10: Testing & Deployment
-* Perform functional integration testing (authentication, inventory deduction checkouts).
-* Set up production profiles, compile finalized executable packages, and deploy.
+### Phase 11: Testing
+* Perform functional integration testing (authentication, inventory deduction, checkout, payments).
+* Write unit and integration tests for critical service layers.
+* Conduct API regression testing across all modules.
+
+### Phase 12: Deployment
+* Set up production profiles and configure environment variables.
+* Compile finalized executable packages.
+* Deploy application to production server and verify health endpoints.

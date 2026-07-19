@@ -2,5 +2,7 @@ package com.stayhome.entity;
 
 public enum PaymentStatus {
     UNPAID,
-    PAID
+    PAID,
+    FAILED,
+    REFUNDED
 }

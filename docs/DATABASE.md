@@ -79,12 +79,15 @@ Tracks user orders and shipping details.
 * **id** (`BIGINT`, PK, Auto-Increment)
 * **user_id** (`BIGINT`, FK referencing `users(id)`)
 * **order_date** (`TIMESTAMP`, NOT NULL)
-* **status** (`ENUM('PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELLED')`, DEFAULT 'PENDING')
+* **updated_at** (`TIMESTAMP`)
+* **status** (`VARCHAR(30)`, DEFAULT 'PENDING') - Stores statuses: PENDING, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, CANCELLED
+* **subtotal** (`DECIMAL(10,2)`, NOT NULL)
+* **delivery_charge** (`DECIMAL(10,2)`, NOT NULL)
 * **total_amount** (`DECIMAL(10,2)`, NOT NULL)
 * **shipping_address** (`TEXT`, NOT NULL)
 * **phone** (`VARCHAR(20)`, NOT NULL)
-* **payment_method** (`VARCHAR(50)`, DEFAULT 'COD')
-* **payment_status** (`ENUM('UNPAID', 'PAID')`, DEFAULT 'UNPAID')
+* **payment_method** (`VARCHAR(30)`, DEFAULT 'COD') - Stores enum values: COD, CREDIT_CARD, DEBIT_CARD, MOBILE_BANKING, ONLINE_TRANSFER
+* **payment_status** (`VARCHAR(20)`, DEFAULT 'UNPAID') - Stores enum values: UNPAID, PAID, FAILED, REFUNDED
 
 ### 6. `order_items` Table
 Itemizes items within each order.
@@ -128,6 +131,26 @@ Stores customer selections in their shopping cart.
 * **created_at** (`TIMESTAMP`, NOT NULL)
 * **updated_at** (`TIMESTAMP`)
 
+### 11. `wishlist_items` Table
+Stores customer wishlist entries.
+* **id** (`BIGINT`, PK, Auto-Increment)
+* **user_id** (`BIGINT`, FK referencing `users(id)`)
+* **product_id** (`BIGINT`, FK referencing `products(id)`)
+* **created_at** (`TIMESTAMP`, NOT NULL)
+
+> Unique constraint on `(user_id, product_id)` prevents duplicate wishlist entries.
+
+### 12. `payments` Table
+Records transaction details of customer payments.
+* **id** (`BIGINT`, PK, Auto-Increment)
+* **order_id** (`BIGINT`, FK referencing `orders(id)`, UNIQUE)
+* **transaction_id** (`VARCHAR(100)`)
+* **payment_method** (`ENUM('COD', 'CREDIT_CARD', 'DEBIT_CARD', 'MOBILE_BANKING', 'ONLINE_TRANSFER')`, NOT NULL)
+* **payment_status** (`ENUM('UNPAID', 'PAID', 'FAILED', 'REFUNDED')`, NOT NULL)
+* **amount** (`DECIMAL(10,2)`, NOT NULL)
+* **paid_at** (`TIMESTAMP`)
+* **created_at** (`TIMESTAMP`, NOT NULL)
+
 ---
 
 ## ⚡ Performance Optimization Indexes
@@ -138,3 +161,6 @@ To maintain database response times, the following database column indexes must 
 3. **Product search index (`products.name`):** Improves search query execution times when users use search parameters.
 4. **Creation sorting index (`products.created_at`):** Speeds up fetching "New Arrivals" and sorting the latest catalog additions.
 5. **Cart user index (`cart_items.user_id`):** Speeds up retrieving a customer's cart items.
+6. **Wishlist user index (`wishlist_items.user_id`):** Speeds up retrieving a customer's wishlist items.
+7. **Order user index (`orders.user_id`):** Speeds up fetching customer order history.
+8. **Payment order index (`payments.order_id`):** Configured as a UNIQUE index for fast payment lookups associated with an order.

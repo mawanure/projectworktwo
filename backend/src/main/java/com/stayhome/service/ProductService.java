@@ -31,30 +31,30 @@ public class ProductService {
     private CategoryRepository categoryRepository;
 
     public List<ProductSummaryResponse> getAllProducts() {
-        return productRepository.findAll().stream()
+        return productRepository.findByIsActiveTrue().stream()
                 .map(this::mapToProductSummaryResponse)
                 .collect(Collectors.toList());
     }
 
     public Page<ProductSummaryResponse> searchProducts(String search, Long categoryId, Pageable pageable) {
-        Page<Product> products = productRepository.searchProducts(search, categoryId, pageable);
+        Page<Product> products = productRepository.searchActiveProducts(search, categoryId, pageable);
         return products.map(this::mapToProductSummaryResponse);
     }
 
     public List<ProductSummaryResponse> getFeaturedProducts() {
-        return productRepository.findByIsFeaturedTrue().stream()
+        return productRepository.findByIsFeaturedTrueAndIsActiveTrue().stream()
                 .map(this::mapToProductSummaryResponse)
                 .collect(Collectors.toList());
     }
 
     public List<ProductSummaryResponse> getNewArrivals() {
-        return productRepository.findByIsNewArrivalTrueOrderByCreatedAtDesc().stream()
+        return productRepository.findByIsNewArrivalTrueAndIsActiveTrueOrderByCreatedAtDesc().stream()
                 .map(this::mapToProductSummaryResponse)
                 .collect(Collectors.toList());
     }
 
     public ProductResponse getProductById(Long id) {
-        Product product = productRepository.findById(id)
+        Product product = productRepository.findByIdAndIsActiveTrue(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
         return mapToProductResponse(product);
     }
@@ -71,6 +71,7 @@ public class ProductService {
                 .price(request.getPrice())
                 .stock(request.getStock())
                 .sizes(request.getSizes())
+                .isActive(true)
                 .build();
 
         if (request.getImageUrls() != null && !request.getImageUrls().isEmpty()) {
@@ -129,9 +130,9 @@ public class ProductService {
     }
 
     public List<ProductSummaryResponse> getRelatedProducts(Long productId) {
-        Product product = productRepository.findById(productId)
+        Product product = productRepository.findByIdAndIsActiveTrue(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + productId));
-        return productRepository.findTop4ByCategoryIdAndIdNot(product.getCategory().getId(), productId).stream()
+        return productRepository.findTop4ByCategoryIdAndIdNotAndIsActiveTrue(product.getCategory().getId(), productId).stream()
                 .map(this::mapToProductSummaryResponse)
                 .collect(Collectors.toList());
     }
@@ -180,6 +181,7 @@ public class ProductService {
                 .sizes(product.getSizes())
                 .rating(product.getRating())
                 .availability(availability)
+                .isActive(product.getIsActive())
                 .imageUrls(imageUrls)
                 .build();
     }

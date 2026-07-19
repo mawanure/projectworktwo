@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -35,10 +36,22 @@ public class Order {
     @Column(name = "order_date", nullable = false, updatable = false)
     private LocalDateTime orderDate;
 
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     @Builder.Default
     private OrderStatus status = OrderStatus.PENDING;
+
+    @Column(name = "subtotal", nullable = false, precision = 10, scale = 2)
+    @Builder.Default
+    private BigDecimal subtotal = BigDecimal.ZERO;
+
+    @Column(name = "delivery_charge", nullable = false, precision = 10, scale = 2)
+    @Builder.Default
+    private BigDecimal deliveryCharge = BigDecimal.ZERO;
 
     @NotNull(message = "Total amount is required")
     @Column(name = "total_amount", nullable = false, precision = 10, scale = 2)
@@ -52,9 +65,10 @@ public class Order {
     @Column(nullable = false, length = 20)
     private String phone;
 
-    @Column(name = "payment_method", nullable = false, length = 50)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_method", nullable = false, length = 30)
     @Builder.Default
-    private String paymentMethod = "COD";
+    private PaymentMethod paymentMethod = PaymentMethod.COD;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_status", nullable = false, length = 20)

@@ -53,6 +53,10 @@ public class User {
     @Builder.Default
     private Role role = Role.CUSTOMER;
 
+    @Column(nullable = false)
+    @Builder.Default
+    private Boolean blocked = false;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

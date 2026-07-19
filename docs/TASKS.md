@@ -32,7 +32,7 @@ This document tracks implementation items across the project lifecycle.
 - `[x]` API Testing
 - `[x]` Documentation Update
 
-### Phase 3: Category Module
+### Phase 3: Category Module (Completed)
 - `[x]` Create Category DTO schemas (`CategoryRequest`, `CategoryResponse`)
 - `[x]` Implement CRUD repository methods in `CategoryRepository`
 - `[x]` Implement Category service layer with exception handling
@@ -42,7 +42,7 @@ This document tracks implementation items across the project lifecycle.
 - `[x]` API Testing
 - `[x]` Documentation Update
 
-### Phase 4: Product Module
+### Phase 4: Product Module (Completed)
 - `[x]` Create Product DTO schemas (`ProductRequest`, `ProductResponse`, `ProductDetailResponse`)
 - `[x]` Implement paginated retrieval queries in `ProductRepository`
 - `[x]` Implement Product service handling logic and mapping rules
@@ -52,48 +52,62 @@ This document tracks implementation items across the project lifecycle.
 - `[x]` API Testing
 - `[x]` Documentation Update
 
-### Phase 5: Cart & Wishlist (Cart Complete, Wishlist Outstanding)
-- `[x]` Implement database tables or custom entities for Cart mapping
-- `[x]` Create Cart DTOs (`CartItemRequest`, `CartResponse`)
+### Phase 5: Cart (Completed)
+- `[x]` Implement `cart_items` database table entity mapping
+- `[x]` Create Cart DTOs (`CartItemRequest`, `CartItemResponse`, `CartResponse`)
 - `[x]` Implement Cart service operations (Add, remove, update quantities, calculate subtotals)
 - `[x]` Expose customer cart REST endpoints (`GET /api/cart`, `POST /api/cart`, `PUT /api/cart/{id}`, `DELETE /api/cart/{id}`)
-- `[ ]` Implement database tables or custom entities for Wishlist mapping
-- `[ ]` Create Wishlist DTOs (`WishlistResponse`)
-- `[ ]` Expose customer wishlist REST endpoints (`GET /api/wishlist`, `POST /api/wishlist`, `DELETE /api/wishlist/{id}`)
+- `[x]` Implement stock validation to prevent over-adding cart quantities
 - `[x]` Build Verification
 - `[x]` API Testing
 - `[x]` Documentation Update
 
-### Phase 6: Checkout & Orders
-- `[ ]` Create Order DTOs (`CheckoutRequest`, `OrderResponse`, `OrderDetailResponse`)
-- `[ ]` Implement stock check, size checking, and quantity validation rules in OrderService
-- `[ ]` Implement checkout transaction mappings using `@Transactional` boundaries
-- `[ ]` Expose order checkout endpoint (`POST /api/orders`)
-- `[ ]` Expose order history retrieve endpoint (`GET /api/orders/my-orders`)
-- `[ ]` Expose order tracking endpoint (`GET /api/orders/{id}`)
-- `[ ]` Build Verification
-- `[ ]` API Testing
-- `[ ]` Documentation Update
+### Phase 6: Wishlist (Completed)
+- `[x]` Implement `wishlist_items` database table entity mapping
+- `[x]` Create Wishlist DTOs (`WishlistItemRequest`, `WishlistItemResponse`, `WishlistResponse`)
+- `[x]` Implement Wishlist service operations (Add with duplicate check, remove, retrieve, clear, check)
+- `[x]` Expose customer wishlist REST endpoints (`GET /api/wishlist`, `POST /api/wishlist`, `DELETE /api/wishlist/{id}`, `DELETE /api/wishlist`, `GET /api/wishlist/check/{productId}`)
+- `[x]` Enforce 409 Conflict for duplicate product additions
+- `[x]` Build Verification
+- `[x]` API Testing
+- `[x]` Documentation Update
 
-### Phase 7: Contact, Newsletter & Blog
-- `[ ]` Implement repository and endpoints for support tickets (`POST /api/contact`)
-- `[ ]` Implement subscription endpoints with constraint checks (`POST /api/newsletter/subscribe`)
-- `[ ]` Expose paginated blog APIs (`GET /api/blogs`, `GET /api/blogs/{id}`)
-- `[ ]` Build Verification
-- `[ ]` API Testing
-- `[ ]` Documentation Update
+### Phase 7: Checkout & Orders (Completed)
+- `[x]` Create Order DTOs (`CheckoutRequest`, `CheckoutPreviewResponse`, `OrderResponse`, `OrderItemResponse`)
+- `[x]` Implement stock check, size checking, and quantity validation rules in OrderService
+- `[x]` Implement checkout transaction mappings using `@Transactional` boundaries
+- `[x]` Expose order checkout endpoint (`POST /api/orders`)
+- `[x]` Expose order history retrieve endpoint (`GET /api/orders/my-orders`)
+- `[x]` Expose order tracking endpoint (`GET /api/orders/{id}`)
+- `[x]` Expose order cancellation endpoint (`PATCH /api/orders/{id}/cancel`) with stock restoration
+- `[x]` Expose checkout preview endpoint (`GET /api/orders/checkout-preview`) with delivery charge calculations
+- `[x]` Build Verification
+- `[x]` API Testing
+- `[x]` Documentation Update
 
-### Phase 8: Admin Dashboard
-- `[ ]` Expose Admin CRUD endpoints for products (`POST`, `PUT`, `DELETE` under `/api/admin/products`)
-- `[ ]` Expose Admin order query and status updates (`GET /api/admin/orders`, `PUT /api/admin/orders/{id}/status`)
-- `[ ]` Expose Admin customer search query (`GET /api/admin/users`)
-- `[ ]` Expose Admin ticket view (`GET /api/admin/contact-messages`)
-- `[ ]` Expose Admin subscription view (`GET /api/admin/newsletter-subscribers`)
-- `[ ]` Build Verification
-- `[ ]` API Testing
-- `[ ]` Documentation Update
+### Phase 8: Payment Gateway (Completed)
+- `[x]` Integrate transaction management and configurations
+- `[x]` Implement payment entity representing payments table
+- `[x]` Implement payment creation linked to placed orders
+- `[x]` Update order status and payment status on successful payment confirmation
+- `[x]` Handle order cancellation and payment refunds (`REFUNDED`)
+- `[x]` Expose admin order update endpoint (`PUT /api/admin/orders/{id}/status`) updating payment status
+- `[x]` Expose customer/admin payment details checking endpoints
+- `[x]` Build Verification
+- `[x]` API Testing
+- `[x]` Documentation Update
 
-### Phase 9: Frontend Integration
+### Phase 9: Admin Dashboard (Completed)
+- `[x]` Implement Admin Dashboard API for statistics (users, products, categories, orders, low stock, out of stock, revenue counts)
+- `[x]` Expose Admin User Management CRUD (block, unblock, change roles, filter, search, view by ID)
+- `[x]` Expose Admin Product Management extension (stock update, activate, deactivate)
+- `[x]` Expose Admin Order Management extension (search, filter by customer, filter by status)
+- `[x]` Expose Admin Payment Management CRUD (list, details, filter by status, filter by method)
+- `[x]` Expose Admin CRUD endpoints for products (`POST`, `PUT`, `DELETE`)
+- `[x]` Expose Admin order status updates and support views (tickets, subscribers)
+- `[x]` Documentation Update
+
+### Phase 10: Frontend Integration
 - `[ ]` Set up JS dynamic fetch binding for categories and catalogs on `index.html` and `shop.html`
 - `[ ]` Set up JS binding for product gallery swap and specifications on `sproduct.html`
 - `[ ]` Connect HTML forms (Contact, Newsletter, Blog pagination) to backend endpoints
@@ -103,10 +117,19 @@ This document tracks implementation items across the project lifecycle.
 - `[ ]` API Testing
 - `[ ]` Documentation Update
 
-### Phase 10: Testing & Deployment
-- `[ ]` Perform extensive functional API verification tests
+### Phase 11: Testing
+- `[ ]` Perform extensive functional API verification tests across all modules
+- `[ ]` Write unit tests for critical service layers
+- `[ ]` Write integration tests for checkout, payment, and authentication flows
 - `[ ]` Add database indexes to speed up name search and category filter queries
-- `[ ]` Package production configurations and deploy application executable
 - `[ ]` Build Verification
 - `[ ]` API Testing
+- `[ ]` Documentation Update
+
+### Phase 12: Deployment
+- `[ ]` Package production configurations and environment variables
+- `[ ]` Compile and package production executable (`mvn package`)
+- `[ ]` Deploy application to production server
+- `[ ]` Verify health endpoints and connectivity
+- `[ ]` Build Verification
 - `[ ]` Documentation Update

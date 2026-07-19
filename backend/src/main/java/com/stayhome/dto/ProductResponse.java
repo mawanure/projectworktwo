@@ -22,5 +22,6 @@ public class ProductResponse {
     private String sizes;
     private BigDecimal rating;
     private String availability;
+    private Boolean isActive;
     private List<String> imageUrls;
 }

@@ -42,12 +42,84 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [v0.6.0] - Future Scope
+## [v0.6.0] - 2026-07-19
 ### Added
-* Wishlist module implementation.
-* Checkout & Order processing module integration.
+* Wishlist Module implementation:
+  * Database table `wishlist_items` mapped via JPA with a unique constraint on `(user_id, product_id)` preventing duplicate entries.
+  * Wishlist DTO schemas (`WishlistItemRequest`, `WishlistItemResponse`, `WishlistResponse`).
+  * Endpoints to manage the wishlist:
+    * `GET /api/wishlist` (retrieves full wishlist with total item count).
+    * `POST /api/wishlist` (adds product to wishlist; returns `409 Conflict` if already added).
+    * `DELETE /api/wishlist/{id}` (removes a specific wishlist item).
+    * `DELETE /api/wishlist` (clears all items from wishlist).
+    * `GET /api/wishlist/check/{productId}` (checks if product exists in wishlist, returns `{"inWishlist": true/false}`).
 
 ---
+
+## [v0.7.0] - 2026-07-19
+### Added
+* Checkout & Orders Module implementation:
+  * Database table schema mappings for `orders` and `order_items`.
+  * DTO classes (`CheckoutRequest`, `CheckoutPreviewResponse`, `OrderResponse`, `OrderItemResponse`).
+  * Endpoints to manage checkouts and orders:
+    * `GET /api/orders/checkout-preview` (returns total subtotal, delivery charges, items preview).
+    * `POST /api/orders` (places order, checks stock levels, deducts inventory, clears cart, initiates payment).
+    * `GET /api/orders/my-orders` (retrieves customer order history).
+    * `GET /api/orders/{id}` (retrieves specific order tracking details).
+    * `PATCH /api/orders/{id}/cancel` (cancels PENDING orders and restores product stock).
+  * Auto-calculation of delivery charges (free shipping threshold over 1000).
+  * Robust transaction boundaries `@Transactional` ensuring database state integrity.
+
+---
+
+## [v0.8.0] - 2026-07-19
+### Added
+* Payment Module implementation:
+  * Database table `payments` with unique constraint per order.
+  * Payment entity tracking amount, transaction ID, status (UNPAID, PAID, FAILED, REFUNDED), and paid timestamp.
+  * Integration hooks:
+    * Auto payment confirmation mapping for COD orders on admin status updates.
+    * Auto payment refund mapping (`REFUNDED`) on customer order cancellation.
+  * Endpoints:
+    * `GET /api/orders/{id}/payment` (customer check of payment info).
+    * `GET /api/admin/orders/{id}/payment` (admin check of payment record).
+    * `PUT /api/admin/orders/{id}/status` (admin order status update, triggering payment status changes).
+
+---
+
+## [v0.9.0] - 2026-07-19
+### Added
+* Admin Dashboard Module implementation:
+  * Exposed Admin products CRUD endpoints (`POST /api/admin/products`, `PUT /api/admin/products/{id}`, `DELETE /api/admin/products/{id}`).
+  * Exposed Admin orders status transitions (`PUT /api/admin/orders/{id}/status`).
+  * Admin Dashboard Statistics endpoint (`GET /api/admin/dashboard/stats`) mapping total users, customers, admins, categories, products, orders, cancelled/pending/processing/delivered counts, low stock/out of stock tracking, and total revenue.
+  * Admin User Management APIs (`GET /api/admin/users`, `GET /api/admin/users/{id}`, `PATCH /api/admin/users/{id}/block`, `PATCH /api/admin/users/{id}/unblock`, `PUT /api/admin/users/{id}/role`).
+  * Admin Product Management extensions (`PATCH /api/admin/products/{id}/stock`, `PATCH /api/admin/products/{id}/activate`, `PATCH /api/admin/products/{id}/deactivate`).
+  * Admin Order Management extensions supporting query parameter searches and filters (`GET /api/admin/orders`, `GET /api/admin/orders/{id}`).
+  * Admin Payment Management APIs (`GET /api/admin/payments`, `GET /api/admin/payments/{id}`) supporting custom filters by PaymentStatus and PaymentMethod.
+  * Created DTO models: `ContactMessageResponse`, `NewsletterSubscriberResponse`, `DashboardStatsResponse`.
+  * Database changes: Added `blocked` column to `User` entity and `isActive` column to `Product` entity.
+
+---
+
+## [v0.10.0] - Future Scope
+### Added
+* Frontend Integration:
+  * JS dynamic bindings for catalog, search, product detail, auth state, and cart checkout.
+
+---
+
+## [v0.11.0] - Future Scope
+### Added
+* Testing:
+  * Functional API verification, unit tests, integration tests, and performance regression tests.
+
+---
+
+## [v0.12.0] - Future Scope
+### Added
+* Deployment:
+  * Production configuration, packaging, and deployment with environment variable setup.
 
 ## [v0.2.0] - 2026-07-19
 ### Added

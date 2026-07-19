@@ -63,6 +63,10 @@ public class Product {
     @Builder.Default
     private Boolean isNewArrival = false;
 
+    @Column(name = "is_active", nullable = false)
+    @Builder.Default
+    private Boolean isActive = true;
+
     @Column(precision = 2, scale = 1)
     @Builder.Default
     private BigDecimal rating = BigDecimal.valueOf(5.0);
