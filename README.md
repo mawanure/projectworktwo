@@ -1,7 +1,7 @@
 # 🛒 CozyCart - Premium Full-Stack E-Commerce Platform
 
 <p align="center">
-  <img src="public/images/logo.png" alt="CozyCart Logo" width="180px" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);"/>
+  <img src="frontend/public/images/logo.png" alt="CozyCart Logo" width="180px" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);"/>
 </p>
 
 <p align="center">
@@ -270,7 +270,7 @@ For a comprehensive API list and schema definitions, please refer to the detaile
 Here is what CozyCart looks like:
 
 <p align="center">
-  <img src="public/images/repo.png.png" alt="CozyCart Landing Banner" style="border-radius: 8px; max-width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"/>
+  <img src="frontend/public/images/repo.png.png" alt="CozyCart Landing Banner" style="border-radius: 8px; max-width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"/>
 </p>
 
 ---
