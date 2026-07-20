@@ -1,7 +1,7 @@
 # 🛒 CozyCart - Premium Full-Stack E-Commerce Platform
 
 <p align="center">
-  <img src="images/logo.png" alt="CozyCart Logo" width="180px" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);"/>
+  <img src="public/images/logo.png" alt="CozyCart Logo" width="180px" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);"/>
 </p>
 
 <h3 align="center">Shop Cozy. Live Better.</h3>
