@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import apiClient from '../../api/apiClient';
 import toast from 'react-hot-toast';
-import { Plus, Edit2, Trash2, Eye, EyeOff, Package } from 'lucide-react';
+import { Plus, Edit2, Trash2, Eye, EyeOff, Upload, X, ImageIcon } from 'lucide-react';
 
 const Products = () => {
   const queryClient = useQueryClient();
   const [editingProduct, setEditingProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newStockValues, setNewStockValues] = useState({});
+  const [uploadedImages, setUploadedImages] = useState([]); // [{url, preview}]
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef(null);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -21,7 +24,6 @@ const Products = () => {
     isFeatured: false,
     isNewArrival: false,
     isActive: true,
-    imageUrls: '',
   });
 
   // Fetch Categories for dropdown
@@ -100,6 +102,18 @@ const Products = () => {
     },
   });
 
+  // Mutation: Upload Image
+  const uploadImageMutation = useMutation({
+    mutationFn: async (file) => {
+      const formDataUpload = new FormData();
+      formDataUpload.append('file', file);
+      const response = await apiClient.post('/api/admin/upload/image', formDataUpload, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      return response.data.url;
+    },
+  });
+
   // Mutation: Toggle Active State
   const toggleActiveMutation = useMutation({
     mutationFn: async ({ id, active }) => {
@@ -123,8 +137,8 @@ const Products = () => {
       isFeatured: false,
       isNewArrival: false,
       isActive: true,
-      imageUrls: '',
     });
+    setUploadedImages([]);
   };
 
   const handleEditClick = (product) => {
@@ -139,8 +153,14 @@ const Products = () => {
       isFeatured: product.isFeatured || false,
       isNewArrival: product.isNewArrival || false,
       isActive: product.isActive ?? true,
-      imageUrls: product.images?.map(img => img.imageUrl).join(', ') || '',
     });
+    // Pre-load existing images
+    const existingImages = product.images?.map(img => ({
+      url: img.imageUrl,
+      preview: img.imageUrl.startsWith('http') ? img.imageUrl : `${import.meta.env.VITE_API_BASE_URL}${img.imageUrl}`,
+      isExisting: true,
+    })) || [];
+    setUploadedImages(existingImages);
     setIsModalOpen(true);
   };
 
@@ -161,7 +181,7 @@ const Products = () => {
       isFeatured: formData.isFeatured,
       isNewArrival: formData.isNewArrival,
       isActive: formData.isActive,
-      imageUrls: formData.imageUrls.split(',').map(url => url.trim()).filter(Boolean),
+      imageUrls: uploadedImages.map(img => img.url),
     };
 
     if (editingProduct) {
@@ -169,6 +189,51 @@ const Products = () => {
     } else {
       createProductMutation.mutate(payload);
     }
+  };
+
+  // Handle file selection (from input or drop)
+  const handleFilesSelected = async (files) => {
+    const fileArray = Array.from(files);
+    for (const file of fileArray) {
+      if (!file.type.startsWith('image/')) {
+        toast.error(`${file.name} is not an image file`);
+        continue;
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        toast.error(`${file.name} exceeds the 10MB limit`);
+        continue;
+      }
+      // Local preview immediately
+      const previewUrl = URL.createObjectURL(file);
+      const tempId = Date.now() + Math.random();
+      setUploadedImages(prev => [...prev, { url: null, preview: previewUrl, tempId, uploading: true }]);
+
+      try {
+        const formDataUpload = new FormData();
+        formDataUpload.append('file', file);
+        const response = await apiClient.post('/api/admin/upload/image', formDataUpload, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        const serverUrl = response.data.url;
+        setUploadedImages(prev =>
+          prev.map(img => img.tempId === tempId ? { url: serverUrl, preview: previewUrl, uploading: false } : img)
+        );
+        toast.success('Image uploaded!');
+      } catch (err) {
+        setUploadedImages(prev => prev.filter(img => img.tempId !== tempId));
+        toast.error('Image upload failed: ' + (err.response?.data?.error || err.message));
+      }
+    }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    handleFilesSelected(e.dataTransfer.files);
+  };
+
+  const removeImage = (index) => {
+    setUploadedImages(prev => prev.filter((_, i) => i !== index));
   };
 
   if (isLoading) {
@@ -358,13 +423,64 @@ const Products = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-neutral-400 mb-1 uppercase tracking-wider">Image URLs (comma-separated)</label>
-                <textarea 
-                  value={formData.imageUrls}
-                  onChange={(e) => setFormData({ ...formData, imageUrls: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-primary focus:outline-none h-16"
-                  placeholder="/images/products/f1.jpg, /images/products/f2.jpg"
-                />
+                <label className="block text-xs font-semibold text-neutral-400 mb-1 uppercase tracking-wider">Product Images</label>
+
+                {/* Upload Drop Zone */}
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                  onDragLeave={() => setIsDragging(false)}
+                  onDrop={handleDrop}
+                  className={`border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-all ${
+                    isDragging ? 'border-primary bg-primary/5' : 'border-gray-200 hover:border-primary/50 hover:bg-gray-50'
+                  }`}
+                >
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    className="hidden"
+                    onChange={(e) => handleFilesSelected(e.target.files)}
+                  />
+                  <Upload className="h-6 w-6 text-neutral-400 mx-auto mb-1" />
+                  <p className="text-xs text-neutral-500">Click or drag & drop images here</p>
+                  <p className="text-xs text-neutral-400">JPEG, PNG, WebP, GIF &bull; max 10MB each</p>
+                </div>
+
+                {/* Image Previews */}
+                {uploadedImages.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {uploadedImages.map((img, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={img.preview}
+                          alt={`Product image ${index + 1}`}
+                          className={`h-16 w-16 object-cover rounded-lg border-2 ${
+                            index === 0 ? 'border-primary' : 'border-gray-200'
+                          } ${img.uploading ? 'opacity-50' : ''}`}
+                        />
+                        {img.uploading && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="h-4 w-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                          </div>
+                        )}
+                        {!img.uploading && (
+                          <button
+                            type="button"
+                            onClick={() => removeImage(index)}
+                            className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity shadow"
+                          >
+                            <X className="h-3 w-3" />
+                          </button>
+                        )}
+                        {index === 0 && (
+                          <span className="absolute bottom-0 left-0 right-0 text-center text-[9px] bg-primary/80 text-white rounded-b-lg py-0.5">Primary</span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div>

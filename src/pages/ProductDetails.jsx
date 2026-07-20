@@ -7,6 +7,7 @@ import { useWishlist } from '../contexts/WishlistContext';
 import ProductCard from '../components/ProductCard';
 import { Star, Heart, ShoppingBag, Plus, Minus, ArrowLeft, CheckCircle, AlertTriangle } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { resolveImageUrl } from '../utils/imageUtils';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -47,9 +48,9 @@ const ProductDetails = () => {
       }
 
       if (product.imageUrls && product.imageUrls.length > 0) {
-        setActiveImage(product.imageUrls[0]);
+        setActiveImage(resolveImageUrl(product.imageUrls[0]));
       } else {
-        setActiveImage('images/products/f1.jpg');
+        setActiveImage('/images/products/f1.jpg');
       }
       
       // Reset quantity
@@ -80,7 +81,9 @@ const ProductDetails = () => {
 
   const inWishlist = isProductInWishlist(product.id);
   const sizeOptions = product.sizes ? product.sizes.split(',').map(s => s.trim()) : ['M'];
-  const gallery = product.imageUrls && product.imageUrls.length > 0 ? product.imageUrls : ['images/products/f1.jpg'];
+  const gallery = product.imageUrls && product.imageUrls.length > 0
+    ? product.imageUrls.map(url => resolveImageUrl(url))
+    : ['/images/products/f1.jpg'];
 
   const handleWishlistToggle = async () => {
     if (inWishlist) {
@@ -117,7 +120,7 @@ const ProductDetails = () => {
         <div className="flex flex-col space-y-4">
           <div className="aspect-square w-full rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 relative">
             <img
-              src={`/${activeImage}`}
+              src={activeImage}
               alt={product.name}
               className="h-full w-full object-cover object-center transition-all duration-300"
               onError={(e) => {
@@ -139,7 +142,7 @@ const ProductDetails = () => {
                   }`}
                 >
                   <img
-                    src={`/${img}`}
+                    src={img}
                     alt={`${product.name} thumbnail ${index + 1}`}
                     className="h-full w-full object-cover object-center"
                     onError={(e) => {

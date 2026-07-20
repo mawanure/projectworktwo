@@ -4,6 +4,7 @@ import { Heart, ShoppingBag, Star } from 'lucide-react';
 import { useWishlist } from '../contexts/WishlistContext';
 import { useCart } from '../contexts/CartContext';
 import toast from 'react-hot-toast';
+import { resolveImageUrl } from '../utils/imageUtils';
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const ProductCard = ({ product }) => {
   };
 
   // Safe image URL lookup
-  const primaryImageUrl = product.primaryImageUrl || 'images/products/f1.jpg';
+  const primaryImageUrl = resolveImageUrl(product.primaryImageUrl);
 
   return (
     <div 
@@ -50,7 +51,7 @@ const ProductCard = ({ product }) => {
       {/* Product Image */}
       <div className="aspect-square w-full rounded-xl overflow-hidden bg-gray-50 relative mb-4">
         <img
-          src={`/${primaryImageUrl}`}
+          src={primaryImageUrl}
           alt={product.name}
           className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
           onError={(e) => {
