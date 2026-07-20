@@ -37,10 +37,10 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 glass-nav h-20 w-full flex items-center justify-between px-6 md:px-16 transition-all duration-300">
+    <header className="sticky top-0 z-50 glass-nav h-16 sm:h-20 w-full flex items-center justify-between px-4 sm:px-6 md:px-16 transition-all duration-300">
       {/* Logo */}
-      <Link to="/" className="flex items-center">
-        <img src="/images/logo.png" alt="CozyCart logo" className="h-10 md:h-12 object-contain" />
+      <Link to="/" className="flex items-center shrink-0">
+        <img src="/images/logo.png" alt="CozyCart logo" className="h-8 sm:h-10 md:h-12 object-contain" />
       </Link>
 
       {/* Desktop Navigation Links */}
@@ -61,16 +61,16 @@ const Navbar = () => {
       </nav>
 
       {/* Actions */}
-      <div className="flex items-center space-x-4 md:space-x-6">
+      <div className="flex items-center space-x-1 sm:space-x-3 md:space-x-6">
         {/* Wishlist Link */}
         <Link 
           to="/wishlist" 
           className="relative p-2 text-dark hover:text-primary transition-colors duration-200"
           title="Wishlist"
         >
-          <Heart className="h-5 w-5 md:h-6 md:w-6" />
+          <Heart className="h-5 w-5" />
           {wishlist.items?.length > 0 && (
-            <span className="absolute -top-1 -right-1 flex h-4 w-4 md:h-5 md:w-5 items-center justify-center rounded-full bg-primary text-[10px] md:text-[11px] font-bold text-white">
+            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">
               {wishlist.items.length}
             </span>
           )}
@@ -82,16 +82,16 @@ const Navbar = () => {
           className="relative p-2 text-dark hover:text-primary transition-colors duration-200"
           title="Cart"
         >
-          <ShoppingBag className="h-5 w-5 md:h-6 md:w-6" />
+          <ShoppingBag className="h-5 w-5" />
           {getCartCount() > 0 && (
-            <span className="absolute -top-1 -right-1 flex h-4 w-4 md:h-5 md:w-5 items-center justify-center rounded-full bg-primary text-[10px] md:text-[11px] font-bold text-white">
+            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">
               {getCartCount()}
             </span>
           )}
         </Link>
 
-        {/* Profile Dropdown */}
-        <div className="relative">
+        {/* Profile — only show on desktop */}
+        <div className="relative hidden md:block">
           {isAuthenticated ? (
             <div>
               <button
@@ -174,34 +174,85 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Menu Drawer with backdrop */}
       {mobileMenuOpen && (
-        <div className="absolute top-20 left-0 w-full bg-white border-b border-gray-100 shadow-lg px-6 py-6 md:hidden flex flex-col space-y-4 animate-in slide-in-from-top duration-300">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.name}
-              to={link.path}
-              onClick={() => setMobileMenuOpen(false)}
-              className={({ isActive }) =>
-                `text-base font-semibold transition-colors py-2 ${
-                  isActive ? 'text-primary' : 'text-dark'
-                }`
-              }
-            >
-              {link.name}
-            </NavLink>
-          ))}
-          
-          {isAuthenticated && isAdmin && (
-            <Link
-              to="/admin"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-semibold text-primary py-2 border-t border-gray-100 mt-2"
-            >
-              Admin Dashboard
-            </Link>
-          )}
-        </div>
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 top-16 sm:top-20 bg-black/30 md:hidden z-40"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          {/* Drawer */}
+          <div className="absolute top-16 sm:top-20 left-0 w-full bg-white border-b border-gray-100 shadow-xl px-5 py-4 md:hidden flex flex-col animate-in slide-in-from-top duration-200 z-50">
+            {/* Nav Links */}
+            <div className="flex flex-col">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `text-base font-semibold transition-colors py-3 border-b border-gray-100 last:border-0 ${
+                      isActive ? 'text-primary' : 'text-dark'
+                    }`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+            </div>
+            
+            {/* Account section */}
+            {isAuthenticated ? (
+              <div className="pt-4 mt-2 border-t border-gray-100 flex flex-col space-y-1">
+                <p className="text-xs text-gray-400 mb-1">Signed in as <span className="font-semibold text-dark">{user.name}</span></p>
+                <Link
+                  to="/profile"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center space-x-3 py-2.5 text-sm font-semibold text-dark hover:text-primary transition-colors"
+                >
+                  <User className="h-4 w-4" />
+                  <span>My Profile</span>
+                </Link>
+                <Link
+                  to="/orders"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center space-x-3 py-2.5 text-sm font-semibold text-dark hover:text-primary transition-colors"
+                >
+                  <History className="h-4 w-4" />
+                  <span>My Orders</span>
+                </Link>
+                {isAdmin && (
+                  <Link
+                    to="/admin"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center space-x-3 py-2.5 text-sm font-semibold text-primary"
+                  >
+                    <LayoutDashboard className="h-4 w-4" />
+                    <span>Admin Dashboard</span>
+                  </Link>
+                )}
+                <button
+                  onClick={() => { handleLogout(); setMobileMenuOpen(false); }}
+                  className="flex items-center space-x-3 py-2.5 text-sm font-semibold text-red-600 text-left mt-1"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Sign Out</span>
+                </button>
+              </div>
+            ) : (
+              <div className="pt-4 mt-2 border-t border-gray-100">
+                <Link
+                  to="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-center bg-primary text-white font-semibold py-2.5 rounded-xl text-sm hover:bg-primary-hover transition-colors"
+                >
+                  Sign In / Register
+                </Link>
+              </div>
+            )}
+          </div>
+        </>
       )}
     </header>
   );
