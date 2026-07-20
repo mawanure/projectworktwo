@@ -4,8 +4,6 @@
   <img src="public/images/logo.png" alt="CozyCart Logo" width="180px" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);"/>
 </p>
 
-<h3 align="center">Shop Cozy. Live Better.</h3>
-
 <p align="center">
   <a href="https://spring.io/projects/spring-boot"><img src="https://img.shields.io/badge/Spring_Boot-3.2.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot"/></a>
   <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React"/></a>
@@ -96,17 +94,17 @@ projectworktwo/
 │   ├── Dockerfile                  # Container configurations
 │   └── stayhome_postman_collection.json # Local API Testing Suite
 │
-├── src/                            # React Frontend Source (Vite build)
-│   ├── components/                 # Reusable UI parts & layouts
-│   ├── pages/                      # Page components (Catalog, Cart, Admin Panel)
-│   ├── App.jsx                     # Route configurations (React Router DOM v7)
-│   └── main.jsx                    # Root entry point
+├── frontend/                       # React Frontend (Vite build)
+│   ├── src/                        # Frontend Source Code
+│   │   ├── components/             # Reusable UI parts & layouts
+│   │   ├── pages/                  # Page components (Catalog, Cart, Admin Panel)
+│   │   ├── App.jsx                 # Route configurations (React Router DOM v7)
+│   │   └── main.jsx                # Root entry point
+│   ├── public/                     # Public static frontend files
+│   ├── package.json                # Node dependencies and scripts
+│   └── vite.config.js              # Vite compiler configurations
 │
-├── public/                         # Public static frontend files
 ├── docs/                           # Detailed system specification docs
-├── images/                         # Project logos, banners, and static screenshots
-├── package.json                    # Node dependencies and scripts
-└── vite.config.js                  # Vite compiler configurations
 ```
 
 ---
@@ -174,12 +172,15 @@ Before running the application, make sure you have the following installed:
 ---
 
 ### Step 3: Run the React Frontend
-1. Open a new terminal window in the project root directory.
+1. Open a new terminal window in the project root directory and navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
 2. Install the frontend dependencies:
    ```bash
    npm install
    ```
-3. Set up the local environment configuration. Create a `.env` file in the root directory:
+3. Set up the local environment configuration. Create or edit a `.env` file in the `frontend` directory:
    ```env
    VITE_API_BASE_URL=http://localhost:8081
    ```
@@ -269,7 +270,7 @@ For a comprehensive API list and schema definitions, please refer to the detaile
 Here is what CozyCart looks like:
 
 <p align="center">
-  <img src="images/hero4.png" alt="CozyCart Landing Banner" style="border-radius: 8px; max-width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"/>
+  <img src="public/images/repo.png.png" alt="CozyCart Landing Banner" style="border-radius: 8px; max-width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"/>
 </p>
 
 ---
