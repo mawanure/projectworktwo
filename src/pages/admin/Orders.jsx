@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import apiClient from '../../api/apiClient';
 import toast from 'react-hot-toast';
 import { Eye, Edit } from 'lucide-react';
+import { formatPrice } from '../../utils/imageUtils';
 
 const Orders = () => {
   const queryClient = useQueryClient();
@@ -120,7 +121,7 @@ const Orders = () => {
                   </div>
                 </td>
                 <td className="p-4 text-neutral-500">{new Date(order.orderDate).toLocaleDateString()}</td>
-                <td className="p-4 font-bold text-dark">${parseFloat(order.totalAmount).toFixed(2)}</td>
+                <td className="p-4 font-bold text-dark">{formatPrice(order.totalAmount)}</td>
                 <td className="p-4 font-medium text-neutral-600">{order.paymentMethod}</td>
                 <td className="p-4">
                   <span className={`px-2.5 py-1 text-xs font-bold rounded-full border ${getStatusColor(order.status)}`}>
@@ -230,8 +231,8 @@ const Orders = () => {
                         <td className="p-3 font-semibold text-dark">{item.product?.name || 'Deleted Product'}</td>
                         <td className="p-3 text-center font-medium text-neutral-500">{item.size}</td>
                         <td className="p-3 text-center">{item.quantity}</td>
-                        <td className="p-3 text-right">${parseFloat(item.price).toFixed(2)}</td>
-                        <td className="p-3 text-right font-semibold">${(parseFloat(item.price) * item.quantity).toFixed(2)}</td>
+                        <td className="p-3 text-right">{formatPrice(item.price)}</td>
+                        <td className="p-3 text-right font-semibold">{formatPrice(parseFloat(item.price) * item.quantity)}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -243,15 +244,15 @@ const Orders = () => {
                 <div className="w-64 space-y-2 text-sm text-right">
                   <div className="flex justify-between">
                     <span className="text-neutral-400">Subtotal:</span>
-                    <span className="font-semibold text-dark">${parseFloat(selectedOrder.subtotal).toFixed(2)}</span>
+                    <span className="font-semibold text-dark">{formatPrice(selectedOrder.subtotal)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-neutral-400">Delivery Charge:</span>
-                    <span className="font-semibold text-dark">${parseFloat(selectedOrder.deliveryCharge).toFixed(2)}</span>
+                    <span className="font-semibold text-dark">{formatPrice(selectedOrder.deliveryCharge)}</span>
                   </div>
                   <div className="flex justify-between border-t border-gray-100 pt-2 text-base font-bold text-dark font-spartan">
                     <span>Total Amount:</span>
-                    <span>${parseFloat(selectedOrder.totalAmount).toFixed(2)}</span>
+                    <span>{formatPrice(selectedOrder.totalAmount)}</span>
                   </div>
                 </div>
               </div>

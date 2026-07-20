@@ -14,7 +14,8 @@ import {
   LogOut, 
   Home,
   Menu,
-  X
+  X,
+  BookOpen
 } from 'lucide-react';
 
 const AdminLayout = () => {
@@ -34,6 +35,7 @@ const AdminLayout = () => {
     { name: 'Orders', path: '/admin/orders', icon: FileText },
     { name: 'Payments', path: '/admin/payments', icon: CreditCard },
     { name: 'Users', path: '/admin/users', icon: Users },
+    { name: 'Blog Posts', path: '/admin/blogs', icon: BookOpen },
     { name: 'Support Messages', path: '/admin/messages', icon: Mail },
     { name: 'Newsletter', path: '/admin/newsletter', icon: Send },
     { name: 'Settings', path: '/admin/settings', icon: Settings },

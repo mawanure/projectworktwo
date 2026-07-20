@@ -1,14 +1,20 @@
 package com.stayhome.controller;
 
 import com.stayhome.dto.*;
+import com.stayhome.entity.BlogPost;
 import com.stayhome.entity.OrderStatus;
 import com.stayhome.entity.PaymentMethod;
 import com.stayhome.entity.PaymentStatus;
 import com.stayhome.entity.Role;
+import com.stayhome.repository.BlogPostRepository;
 import com.stayhome.service.AdminService;
 import com.stayhome.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +32,9 @@ public class AdminController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private BlogPostRepository blogPostRepository;
 
     // ========= Dashboard Stats =========
 
@@ -187,5 +196,60 @@ public class AdminController {
     public ResponseEntity<Void> deleteNewsletterSubscriber(@PathVariable Long id) {
         adminService.deleteNewsletterSubscriber(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // ========= Blog Post Management =========
+
+    @GetMapping("/blogs")
+    public ResponseEntity<Page<BlogPostResponse>> getAdminBlogs(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        Pageable pageable = PageRequest.of(Math.max(0, page), Math.min(Math.max(1, size), 100));
+        return ResponseEntity.ok(blogPostRepository.findAllByOrderByCreatedAtDesc(pageable)
+                .map(this::toBlogResponse));
+    }
+
+    @PostMapping("/blogs")
+    public ResponseEntity<BlogPostResponse> createBlog(@Valid @RequestBody BlogPostRequest request) {
+        BlogPost post = BlogPost.builder()
+                .title(request.getTitle().trim())
+                .content(request.getContent().trim())
+                .imageUrl(request.getImageUrl())
+                .author(request.getAuthor() != null && !request.getAuthor().isBlank() ? request.getAuthor().trim() : "Admin")
+                .build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(toBlogResponse(blogPostRepository.save(post)));
+    }
+
+    @PutMapping("/blogs/{id}")
+    public ResponseEntity<BlogPostResponse> updateBlog(@PathVariable Long id, @Valid @RequestBody BlogPostRequest request) {
+        BlogPost post = blogPostRepository.findById(id)
+                .orElseThrow(() -> new com.stayhome.exception.ResourceNotFoundException("Blog post not found with id: " + id));
+        post.setTitle(request.getTitle().trim());
+        post.setContent(request.getContent().trim());
+        post.setImageUrl(request.getImageUrl());
+        if (request.getAuthor() != null && !request.getAuthor().isBlank()) {
+            post.setAuthor(request.getAuthor().trim());
+        }
+        return ResponseEntity.ok(toBlogResponse(blogPostRepository.save(post)));
+    }
+
+    @DeleteMapping("/blogs/{id}")
+    public ResponseEntity<Void> deleteBlog(@PathVariable Long id) {
+        if (!blogPostRepository.existsById(id)) {
+            throw new com.stayhome.exception.ResourceNotFoundException("Blog post not found with id: " + id);
+        }
+        blogPostRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    private BlogPostResponse toBlogResponse(BlogPost post) {
+        return BlogPostResponse.builder()
+                .id(post.getId())
+                .title(post.getTitle())
+                .content(post.getContent())
+                .imageUrl(post.getImageUrl())
+                .author(post.getAuthor())
+                .createdAt(post.getCreatedAt())
+                .build();
     }
 }

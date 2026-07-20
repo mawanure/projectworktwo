@@ -4,7 +4,7 @@ import { Heart, ShoppingBag, Star } from 'lucide-react';
 import { useWishlist } from '../contexts/WishlistContext';
 import { useCart } from '../contexts/CartContext';
 import toast from 'react-hot-toast';
-import { resolveImageUrl } from '../utils/imageUtils';
+import { resolveImageUrl, formatPrice } from '../utils/imageUtils';
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -100,7 +100,7 @@ const ProductCard = ({ product }) => {
         <div className="mt-auto flex items-center justify-between pt-2 border-t border-gray-50">
           <div>
             <span className="text-base font-bold text-primary font-spartan">
-              ${parseFloat(product.price).toFixed(2)}
+              {formatPrice(product.price)}
             </span>
           </div>
           <button

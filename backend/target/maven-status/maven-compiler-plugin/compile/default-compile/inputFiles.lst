@@ -81,6 +81,7 @@ D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\exception\Gl
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\BlogPostResponse.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\repository\ProductImageRepository.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\entity\OrderStatus.java
+D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\BlogPostRequest.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\entity\User.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\repository\BlogPostRepository.java
 D:\Mahfuz\Project\projectworktwo\backend\src\main\java\com\stayhome\dto\CheckoutRequest.java

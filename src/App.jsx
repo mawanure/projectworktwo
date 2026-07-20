@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetails from './pages/ProductDetails';
 import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Cart from './pages/Cart';
@@ -35,6 +36,7 @@ import AdminUsers from './pages/admin/Users';
 import AdminMessages from './pages/admin/Messages';
 import AdminNewsletter from './pages/admin/Newsletter';
 import AdminSettings from './pages/admin/Settings';
+import AdminBlogs from './pages/admin/Blogs';
 
 function App() {
   return (
@@ -47,6 +49,7 @@ function App() {
           <Route path="shop/:id" element={<ProductDetails />} />
           <Route path="products/:id" element={<ProductDetails />} />
           <Route path="blog" element={<Blog />} />
+          <Route path="blog/:id" element={<BlogDetail />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="cart" element={<Cart />} />
@@ -103,6 +106,7 @@ function App() {
           <Route path="users" element={<AdminUsers />} />
           <Route path="messages" element={<AdminMessages />} />
           <Route path="newsletter" element={<AdminNewsletter />} />
+          <Route path="blogs" element={<AdminBlogs />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
       </Routes>

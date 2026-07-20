@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useWishlist } from '../contexts/WishlistContext';
 import { useCart } from '../contexts/CartContext';
 import { Heart, Trash2, ShoppingCart, ArrowRight, Sparkles } from 'lucide-react';
+import { formatPrice } from '../utils/imageUtils';
 import toast from 'react-hot-toast';
 
 const Wishlist = () => {
@@ -105,7 +106,7 @@ const Wishlist = () => {
 
                 <div className="mt-auto flex items-center justify-between pt-4 border-t border-gray-50">
                   <span className="text-base font-bold text-primary font-spartan">
-                    ${parseFloat(product.price).toFixed(2)}
+                    {formatPrice(product.price)}
                   </span>
                   <button
                     onClick={() => handleAddToCart(product)}

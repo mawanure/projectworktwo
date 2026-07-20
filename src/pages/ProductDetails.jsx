@@ -7,7 +7,7 @@ import { useWishlist } from '../contexts/WishlistContext';
 import ProductCard from '../components/ProductCard';
 import { Star, Heart, ShoppingBag, Plus, Minus, ArrowLeft, CheckCircle, AlertTriangle } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { resolveImageUrl } from '../utils/imageUtils';
+import { resolveImageUrl, formatPrice } from '../utils/imageUtils';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -183,7 +183,7 @@ const ProductDetails = () => {
           {/* Price */}
           <div className="bg-gray-50 px-6 py-4 rounded-xl mb-6">
             <span className="text-3xl font-bold text-primary font-spartan">
-              ${parseFloat(product.price).toFixed(2)}
+              {formatPrice(product.price)}
             </span>
           </div>
 

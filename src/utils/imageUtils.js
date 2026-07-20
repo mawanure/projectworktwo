@@ -31,3 +31,16 @@ export function resolveImageUrl(imageUrl, fallback = '/images/products/f1.jpg') 
   }
   return `/${imageUrl}`;
 }
+
+/**
+ * Formats a numeric price value as a BDT (Bangladeshi Taka) string.
+ * e.g. formatPrice(1500) → "৳1,500.00"
+ *
+ * @param {number|string|null|undefined} amount - The price value to format.
+ * @returns {string} Formatted price string with ৳ symbol.
+ */
+export function formatPrice(amount) {
+  const num = parseFloat(amount);
+  if (isNaN(num)) return '৳0.00';
+  return '৳' + num.toLocaleString('en-BD', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}

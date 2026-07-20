@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { ShoppingBag, Trash2, Plus, Minus, ArrowRight } from 'lucide-react';
+import { resolveImageUrl, formatPrice } from '../utils/imageUtils';
 
 const Cart = () => {
   const { cart, loading, updateCartItemQuantity, removeItemFromCart } = useCart();
@@ -40,11 +41,18 @@ const Cart = () => {
     const nextQty = currentQty + amount;
     if (nextQty < 1) return;
     if (stock && nextQty > stock) {
-      toast.error(`Only ${stock} items available in stock.`);
       return;
     }
     await updateCartItemQuantity(itemId, nextQty);
   };
+
+  // Compute summary values from items (backend only returns totalPrice)
+  const subtotal = cart.items?.reduce((sum, item) => {
+    const price = parseFloat(item.product?.price || item.subTotal / item.quantity || 0);
+    return sum + price * item.quantity;
+  }, 0) || parseFloat(cart.totalPrice || 0);
+  const deliveryCharge = cart.items?.length > 0 ? (subtotal >= 50 ? 0 : 5) : 0;
+  const totalAmount = subtotal + deliveryCharge;
 
   return (
     <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
@@ -70,7 +78,7 @@ const Cart = () => {
                 <div className="col-span-6 flex items-center space-x-4">
                   <div className="h-20 w-20 rounded-xl overflow-hidden bg-gray-50 border border-gray-100 shrink-0">
                     <img
-                      src={`/${item.product?.primaryImageUrl || 'images/products/f1.jpg'}`}
+                      src={resolveImageUrl(item.product?.primaryImageUrl)}
                       alt={item.product?.name}
                       className="h-full w-full object-cover object-center"
                       onError={(e) => {
@@ -96,7 +104,7 @@ const Cart = () => {
                 <div className="col-span-2 text-left md:text-center">
                   <span className="text-xs text-gray-400 md:hidden font-bold mr-1">Price:</span>
                   <span className="text-sm font-semibold text-dark font-sans">
-                    ${parseFloat(item.product?.price || 0).toFixed(2)}
+                    {formatPrice(item.product?.price || 0)}
                   </span>
                 </div>
 
@@ -123,7 +131,7 @@ const Cart = () => {
                 <div className="col-span-2 text-left md:text-right">
                   <span className="text-xs text-gray-400 md:hidden font-bold mr-1">Subtotal:</span>
                   <span className="text-sm font-bold text-primary font-spartan">
-                    ${parseFloat(item.subTotal || (item.product?.price * item.quantity)).toFixed(2)}
+                    {formatPrice(item.subTotal || (item.product?.price * item.quantity))}
                   </span>
                 </div>
               </div>
@@ -140,18 +148,18 @@ const Cart = () => {
           <div className="space-y-4 mb-6">
             <div className="flex justify-between text-sm text-gray-500">
               <span>Subtotal</span>
-              <span className="font-semibold text-dark">${parseFloat(cart.subtotal).toFixed(2)}</span>
+              <span className="font-semibold text-dark">{formatPrice(subtotal)}</span>
             </div>
             <div className="flex justify-between text-sm text-gray-500">
               <span>Delivery Charge</span>
               <span className="font-semibold text-dark">
-                {cart.deliveryCharge === 0 ? 'FREE' : `$${parseFloat(cart.deliveryCharge).toFixed(2)}`}
+                {deliveryCharge === 0 ? 'FREE' : formatPrice(deliveryCharge)}
               </span>
             </div>
             
             <div className="border-t border-gray-150 pt-4 flex justify-between text-base font-bold text-dark font-spartan">
               <span>Total Amount</span>
-              <span className="text-primary text-lg">${parseFloat(cart.totalAmount).toFixed(2)}</span>
+              <span className="text-primary text-lg">{formatPrice(totalAmount)}</span>
             </div>
           </div>
 

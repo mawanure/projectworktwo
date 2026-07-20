@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import apiClient from '../../api/apiClient';
+import { formatPrice } from '../../utils/imageUtils';
 
 const Payments = () => {
   const [statusFilter, setStatusFilter] = useState('');
@@ -107,7 +108,7 @@ const Payments = () => {
                 <td className="p-4 font-bold text-dark">#{payment.id}</td>
                 <td className="p-4 font-semibold text-neutral-500">#{payment.orderId}</td>
                 <td className="p-4 font-mono text-xs text-neutral-600">{payment.transactionId || 'N/A'}</td>
-                <td className="p-4 font-bold text-dark">${parseFloat(payment.amount).toFixed(2)}</td>
+                <td className="p-4 font-bold text-dark">{formatPrice(payment.amount)}</td>
                 <td className="p-4 font-medium text-neutral-700">{payment.paymentMethod}</td>
                 <td className="p-4 text-neutral-400">
                   {payment.paidAt ? new Date(payment.paidAt).toLocaleString() : 'Not Paid'}

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import apiClient from '../api/apiClient';
+import { formatPrice } from '../utils/imageUtils';
 import { FileText, Calendar, DollarSign, ArrowRight, Eye } from 'lucide-react';
 
 const Orders = () => {
@@ -121,7 +122,7 @@ const Orders = () => {
               <div className="col-span-2">
                 <span className="text-xs text-gray-400 md:hidden font-bold block mb-1">Total:</span>
                 <span className="text-sm font-bold text-primary font-spartan">
-                  ${parseFloat(order.totalAmount).toFixed(2)}
+                  {formatPrice(order.totalAmount)}
                 </span>
               </div>
 

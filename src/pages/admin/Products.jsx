@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import apiClient from '../../api/apiClient';
 import toast from 'react-hot-toast';
 import { Plus, Edit2, Trash2, Eye, EyeOff, Upload, X, ImageIcon } from 'lucide-react';
+import { formatPrice } from '../../utils/imageUtils';
 
 const Products = () => {
   const queryClient = useQueryClient();
@@ -292,7 +293,7 @@ const Products = () => {
                     {product.category?.name || 'Uncategorized'}
                   </span>
                 </td>
-                <td className="p-4 font-semibold text-dark">${parseFloat(product.price).toFixed(2)}</td>
+                <td className="p-4 font-semibold text-dark">{formatPrice(product.price)}</td>
                 <td className="p-4">
                   <div className="flex items-center space-x-2">
                     <input 

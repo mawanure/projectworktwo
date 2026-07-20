@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import apiClient from '../api/apiClient';
+import { formatPrice } from '../utils/imageUtils';
 import { useCart } from '../contexts/CartContext';
 import { ShoppingBag, Truck, CreditCard, ChevronRight, MapPin, Phone, AlertCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -234,7 +235,7 @@ const Checkout = () => {
                   <h4 className="font-semibold text-dark line-clamp-1">{item.productName}</h4>
                   <p className="text-xs text-gray-400 font-medium">Qty: {item.quantity} | Size: {item.size}</p>
                 </div>
-                <span className="font-bold text-dark shrink-0">${parseFloat(item.subTotal).toFixed(2)}</span>
+                <span className="font-bold text-dark shrink-0">{formatPrice(item.subTotal)}</span>
               </div>
             ))}
           </div>
@@ -242,18 +243,18 @@ const Checkout = () => {
           <div className="space-y-4 pt-4 border-t border-gray-150 mb-6">
             <div className="flex justify-between text-sm text-gray-500">
               <span>Subtotal</span>
-              <span className="font-semibold text-dark">${parseFloat(preview.subtotal).toFixed(2)}</span>
+              <span className="font-semibold text-dark">{formatPrice(preview.subtotal)}</span>
             </div>
             <div className="flex justify-between text-sm text-gray-500">
               <span>Delivery Charge</span>
               <span className="font-semibold text-dark">
-                {preview.deliveryCharge === 0 ? 'FREE' : `$${parseFloat(preview.deliveryCharge).toFixed(2)}`}
+                {preview.deliveryCharge === 0 ? 'FREE' : formatPrice(preview.deliveryCharge)}
               </span>
             </div>
             
             <div className="border-t border-gray-150 pt-4 flex justify-between text-base font-bold text-dark font-spartan">
               <span>Total Amount</span>
-              <span className="text-primary text-lg">${parseFloat(preview.totalAmount).toFixed(2)}</span>
+              <span className="text-primary text-lg">{formatPrice(preview.totalAmount)}</span>
             </div>
           </div>
 

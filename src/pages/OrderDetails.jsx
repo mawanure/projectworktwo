@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import apiClient from '../api/apiClient';
+import { formatPrice } from '../utils/imageUtils';
 import { ArrowLeft, Clock, MapPin, Phone, CreditCard, ChevronRight, FileText, CheckCircle, XCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -200,7 +201,7 @@ const OrderDetails = () => {
                     <h4 className="text-sm font-semibold text-dark line-clamp-1">{item.product?.name}</h4>
                     <p className="text-xs text-gray-400 font-bold uppercase mt-1">Size: {item.size} | Qty: {item.quantity}</p>
                   </div>
-                  <span className="text-sm font-bold text-dark font-spartan">${parseFloat(item.subTotal).toFixed(2)}</span>
+                  <span className="text-sm font-bold text-dark font-spartan">{formatPrice(item.subTotal)}</span>
                 </div>
               ))}
             </div>
@@ -216,17 +217,17 @@ const OrderDetails = () => {
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-500">Subtotal</span>
-                <span className="font-semibold text-dark">${parseFloat(order.subtotal).toFixed(2)}</span>
+                <span className="font-semibold text-dark">{formatPrice(order.subtotal)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-500">Delivery Charge</span>
                 <span className="font-semibold text-dark">
-                  {order.deliveryCharge === 0 ? 'FREE' : `$${parseFloat(order.deliveryCharge).toFixed(2)}`}
+                  {order.deliveryCharge === 0 ? 'FREE' : formatPrice(order.deliveryCharge)}
                 </span>
               </div>
               <div className="flex justify-between border-t border-gray-100 pt-3 font-bold text-dark">
                 <span>Total</span>
-                <span className="text-primary text-base font-spartan">${parseFloat(order.totalAmount).toFixed(2)}</span>
+                <span className="text-primary text-base font-spartan">{formatPrice(order.totalAmount)}</span>
               </div>
             </div>
           </div>
